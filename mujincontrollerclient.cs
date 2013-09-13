@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using fastJSON;
+using mujincontrollerclientcs.DataObjects;
 
 namespace mujincontrollerclient
 {
@@ -112,9 +113,14 @@ namespace mujincontrollerclient
                     }
                     using (HttpWebResponse response3 = (HttpWebResponse)request3.GetResponse())
                     {
+
+
                     }
                 }
             }
+
+           
+
             //byte[] requestMessage = "{ "username": testuser, "csrfmiddlewaretoken": firstcsrftoken, 'password': config.PASSWORD,
             //    'this_is_the_login_form': '1',
             //    'next': '/'";
@@ -122,6 +128,27 @@ namespace mujincontrollerclient
             //}
             //httpWebRequest.GetRequestStream.Write();
         }
+
+        /*
+        public SceneResource GetSceneFromPrimaryKey(string sceneDaeFilename)
+        {
+            new SceneResource(this, sceneDaeFilename);
+
+
+            HttpWebRequest request = _GetWebRequest(_baseapiuri + "scene/?format=json", "GET");
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string responsestring = reader.ReadToEnd();
+                    Dictionary<string, object> jsonmsg = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+
+
+                }
+            }
+            return null;
+        }
+        */
 
         public void SetBasicAuthHeader(WebRequest req, String userName, String userPassword)
         {
@@ -147,6 +174,7 @@ namespace mujincontrollerclient
             return httpWebRequest;
         }
 
+
         public string[] GetScenePrimaryKeys()
         {
             HttpWebRequest request = _GetWebRequest(_baseapiuri + "scene/?format=json&fields=pk", "GET");
@@ -167,5 +195,243 @@ namespace mujincontrollerclient
                 }
             }
         }
+
+        public void TaskGetResult(TaskResource taskResource)
+        {
+            string message = string.Format("task/{0}/result/?format=json&limit=1&optimization=None&fields=pk", taskResource.getPrimaryKey());
+            HttpWebRequest request = _GetWebRequest(_baseapiuri + message, "GET");
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string responsestring = reader.ReadToEnd();
+                    Dictionary<string, object> jsonmsg = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+                    List<object> objects = (List<object>)jsonmsg["objects"];
+                    string[] pks = new string[objects.Count()];
+
+
+                }
+            }
+        }
+
+        public void TaskExecute(TaskResource taskResource)
+        {
+            string message = string.Format("task/{0}/", taskResource.getPrimaryKey());
+            HttpWebRequest putWebRequest = _GetWebRequest(_baseapiuri + message, "POST");
+
+            using (StreamWriter streamWrite = new StreamWriter(putWebRequest.GetRequestStream()))
+            {
+                string putMessage = "";
+                streamWrite.Write(putMessage);
+            }
+            using (HttpWebResponse putWebResponse = (HttpWebResponse)putWebRequest.GetResponse())
+            {
+                using (StreamReader reader = new StreamReader(putWebResponse.GetResponseStream()))
+                {
+                    string responsestring = reader.ReadToEnd();
+                    Dictionary<string, object> jsonmsg = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+                    string jobPrimaryKey = jsonmsg["jobpk"].ToString();
+
+                    //return new TaskResource(this, taskName, taskPrimaryKey);
+                }
+
+            }
+        }
+
+
+        // This is only for GetJointValues for now.
+        public void SetTaskParameters(TaskResource taskResource)
+        {
+            string message = string.Format("task/{0}/?format=json&fields=pk", taskResource.getPrimaryKey());
+            HttpWebRequest putWebRequest = _GetWebRequest(_baseapiuri + message, "PUT");
+           
+            using (StreamWriter streamWrite = new StreamWriter(putWebRequest.GetRequestStream()))
+            {
+                // Implement the API here
+                string putMessage = string.Format("{{\"tasktype\": \"binpicking\", \"taskparameters\":{{\"controllerip\":\"192.168.11.29\", \"controllerport\":5007, \"command\":\"GetJointValues\"}} }}");
+                        
+                streamWrite.Write(putMessage);
+            }
+            
+              using (HttpWebResponse putWebResponse = (HttpWebResponse)putWebRequest.GetResponse())
+              {
+                  using (StreamReader reader = new StreamReader(putWebResponse.GetResponseStream()))
+                  {
+                      string responsestring = reader.ReadToEnd();
+                      Dictionary<string, object> jsonmsg = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+                      //string taskPrimaryKey = jsonmsg2["pk"].ToString();
+
+                      //return new TaskResource(this, taskName, taskPrimaryKey);
+                  }
+
+              }
+       
+        }
+
+
+        public TaskResource GetOrCreateTaskFromName(string scenePrimaryKey, string taskName, string taskType)
+        {
+            string message = string.Format("scene/{0}/task/?format=json&limit=1&name={1}&fields=pk,tasktype", scenePrimaryKey, taskName);
+            HttpWebRequest request = _GetWebRequest(_baseapiuri + message, "GET");
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string responsestring = reader.ReadToEnd();
+                    Dictionary<string, object> jsonmsg = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+                    List<object> tasks = (List<object>)jsonmsg["objects"];
+
+                    if (tasks.Count > 0)
+                    {
+                        foreach (Dictionary<string, object> keyValuePair in tasks)
+                        {
+                            string taskPrimaryKey = keyValuePair["pk"].ToString();
+                            return new TaskResource(this, taskName, taskPrimaryKey);
+                        }
+                    }
+
+                    //controller->CallPost(str(boost::format("scene/%s/task/?format=json&fields=pk")%GetPrimaryKey()), str(boost::format("{\"name\":\"%s\", \"tasktype\":\"%s\", \"scenepk\":\"%s\"}")%taskname%tasktype%GetPrimaryKey()), pt);
+   
+                    message = string.Format("scene/{0}/task/?format=json&fields=pk", scenePrimaryKey);
+
+                    HttpWebRequest postWebRequest = _GetWebRequest(_baseapiuri + message, "POST");
+                    //postWebRequest.ContentType = "application/x-www-form-urlencoded";
+                    //postWebRequest.Referer = _baseuri + "/";
+                    //postWebRequest.AllowAutoRedirect = false; // redirecting messes things up for some reason...
+                    using (StreamWriter streamWrite = new StreamWriter(postWebRequest.GetRequestStream()))
+                    {
+                        //string postMessage = string.Format("{\"name\":\"{0}\", \"tasktype\":\"{1}\", \"scenepk\":\"{2}\"}", taskName, taskType, scenePrimaryKey);
+                        string postMessage = string.Format("{{\"name\":\"{0}\", \"tasktype\":\"{1}\", \"scenepk\":\"{2}\"}}", taskName, taskType, scenePrimaryKey);
+                        
+                        streamWrite.Write(postMessage);
+                        //
+                    }
+                    using (HttpWebResponse postWebResponse = (HttpWebResponse)postWebRequest.GetResponse())
+                    {
+                        using (StreamReader reader2 = new StreamReader(postWebResponse.GetResponseStream()))
+                        {
+                            string responsestring2 = reader2.ReadToEnd();
+                            Dictionary<string, object> jsonmsg2 = (Dictionary<string, object>)JSON.Instance.Parse(responsestring2);
+                            string taskPrimaryKey = jsonmsg2["pk"].ToString();
+
+                            return new TaskResource(this, taskName, taskPrimaryKey);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        public JobStatus GetRunTimeStatuses()
+        {
+            HttpWebRequest request = _GetWebRequest(_baseapiuri + "job/?format=json&fields=pk,status,fnname,elapsedtime", "GET");
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string responsestring = reader.ReadToEnd();
+                    Dictionary<string, object> jsonmsg = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+
+                    foreach (KeyValuePair<string, object> keyValuePair in jsonmsg)
+                    {
+                        
+                    }
+
+                }
+            }
+
+            return null;
+        }
+
+
+        // SceneResource s = new SceneResource("irex2013.mujin.dae"); s.Get("instobjects")
+        // TaskResource task = s.GetOrCreateTaskFromName("task1","binpicking")
+        // task.Set("taskparameters", {"controllerip":"1.1.1.1", ...})
+        // task.Execute();
+
+        // GetScene
+
+        // GetOrCreateTaskFromName
+
+
+
+        //  TODO
+        //  GetJointValues
+        //  GetScene
+        //  RestartServer
+        //  MoveJoints
+        //  MoveToHandPosition
+        //  PickAndPlace
+        //  MoveToSensorVisibility
+        //  MoveToArea
+        //  タスクを取得する。
+
    }
+
+   
+    public class WebResource
+    {
+        public ControllerClient controllerClient;
+        public string resoureName;
+        public string resoucePrimaryKey;
+
+
+        public WebResource(ControllerClient controllerClient, string resoureName, string resoucePrimaryKey)
+        {
+
+        }
+
+       // string Get(string fieldname);
+        //void Set(string fieldname, string value);
+    }
+
+
+
+    public class SceneResource
+    {
+        public ControllerClient controllerClient;
+        public string resoureName;
+        public string resoucePrimaryKey;
+
+        public SceneResource(ControllerClient controllerClient, string resoureName, string resoucePrimaryKey)
+        {
+
+        }
+        
+       
+    }
+
+    public class TaskResource
+   {
+       public ControllerClient controllerClient;
+       public string resourceName;
+       public string resourcePrimaryKey;
+
+       public TaskResource(ControllerClient controllerClient, string resourceName, string resourcePrimaryKey)
+       {
+           this.controllerClient = controllerClient;
+           this.resourcePrimaryKey = resourcePrimaryKey;
+           this.resourceName = resourceName;
+       }
+
+       public string getPrimaryKey()
+       {
+           return resourcePrimaryKey;
+
+       }
+
+
+   }
+
+    public class TaskParameters
+    {
+
+
+    }
+
+
+       
+
 }
