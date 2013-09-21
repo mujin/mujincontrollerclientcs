@@ -22,7 +22,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using fastJSON;
-using mujincontrollerclientcs.DataObjects;
 using System.Diagnostics;
 
 namespace mujincontrollerclient
