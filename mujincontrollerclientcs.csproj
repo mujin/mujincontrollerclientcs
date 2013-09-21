@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="mujincontrollerclient.cs" />
+    <Compile Include="ControllerClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SceneResource.cs" />
+    <Compile Include="TaskResource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="fastJSON\fastJSON.csproj">
