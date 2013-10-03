@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using mujincontrollerclient;
-using mujincontrollerclientcs.DataObjects;
+//using mujincontrollerclientcs.DataObjects;
 
 namespace getsceneinfo
 {
@@ -11,18 +11,18 @@ namespace getsceneinfo
     {
         static void Main(string[] args)
         {
-            string mujinIpAddress = "http://192.168.11.30:8000/";
+            string mujinIpAddress = "http://192.168.11.17:80/";
             string scenePrimaryKey = "irex2013.mujin.dae";
             string username = "testuser";
             string password = "pass";
             string taskName = "testTask001";
             string taskType = "binpicking";
-            string controllerip = "192.168.11.29";
+            string controllerip = "192.168.11.110";
             int controllerport = 5008;
 
             ControllerClient controllerClient = new ControllerClient(username, password, mujinIpAddress);
             Scene scene = controllerClient.GetScene(scenePrimaryKey);
-            Task task = scene.GetOrCreateTaskFromName(taskName, taskType, controllerip, controllerport);
+            BinPickingTask task = (BinPickingTask)scene.GetOrCreateTaskFromName(taskName, taskType, controllerip, controllerport);
 
             //List<object> jointValues = task.GetJointValues();
           
@@ -32,7 +32,8 @@ namespace getsceneinfo
             //task.MoveJoints(jointValues, jointIndices);
 
             //System.Threading.Thread.Sleep(2000);
-            List<object> jointValuesUpdated = task.GetJointValues();
+            BinPickingTask.RobotState state = task.GetJointValues();
+            //state.jointValues;
             string test = "";
             
         }

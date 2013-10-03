@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using fastJSON;
-using mujincontrollerclientcs.DataObjects;
+//using mujincontrollerclientcs.DataObjects;
 using System.Diagnostics;
 
 namespace mujincontrollerclient
@@ -256,8 +256,16 @@ namespace mujincontrollerclient
             {
                 foreach (Dictionary<string, object> keyValuePair in tasks)
                 {
-                    string taskPrimaryKey = keyValuePair["pk"].ToString();
-                    return new Task(taskPrimaryKey, taskName, controllerip, controllerport, this.controllerClient);
+                    string taskPrimaryKey = (string)keyValuePair["pk"];
+                    string tasktype = (string)keyValuePair["tasktype"];
+                    if (tasktype == "binpicking")
+                    {
+                        return new BinPickingTask(taskPrimaryKey, taskName, controllerip, controllerport, this.controllerClient);
+                    }
+                    else
+                    {
+                        throw new ClientException("unsupported task type: " + tasktype);
+                    }
                 }
             }
 
@@ -269,11 +277,25 @@ namespace mujincontrollerclient
             jsonMessage = controllerClient.GetJsonMessage(HttpMethod.POST, apiParameters, message);
 
             string taskPrimaryKeyNew = jsonMessage["pk"].ToString();
-            return new Task(taskPrimaryKeyNew, taskName, controllerip, controllerport, this.controllerClient);
+            if (taskType == "binpicking")
+            {
+                return new BinPickingTask(taskPrimaryKeyNew, taskName, controllerip, controllerport, this.controllerClient);
+            }
+            else
+            {
+                throw new ClientException("unsupported task type: " + taskType);
+            }
         }
     }
 
     public class Task
+    {
+    };
+
+    /// <summary>
+    ///  "binpicking" task
+    /// </summary>
+    public class BinPickingTask : Task
     {
         private string taskPrimaryKey;
         private string taskName;
@@ -285,7 +307,7 @@ namespace mujincontrollerclient
         private class Command
         {
             private string command = null;
-
+            /*
             public Command Add(string key, object value)
             {
                 Type type = value.GetType();
@@ -303,7 +325,9 @@ namespace mujincontrollerclient
 
                 return this;
             }
-            /*
+             */
+
+            
             public Command Add(string key, string value)
             {
                 command = (command == null) ? string.Format("\"{0}\": \"{1}\"", key, value) 
@@ -324,7 +348,7 @@ namespace mujincontrollerclient
                     : command += string.Format(", \"{0}\": {1}", key, value);
                 return this;
             }
-            */
+            
 
             public Command Add<T>(string key, List<T> objects)
             {
@@ -354,16 +378,23 @@ namespace mujincontrollerclient
             }
         }
 
-        public Task(string taskPrimaryKey, string taskName, string controllerip, int controllerport, ControllerClient controllerClient)
+        public BinPickingTask(string taskPrimaryKey, string taskName, string controllerip, int controllerport, ControllerClient controllerClient)
         {
             this.taskPrimaryKey = taskPrimaryKey;
             this.taskName = taskName;
-            this.controllerClient = controllerClient;
+            this.controllerip = controllerip;
             this.controllerport = controllerport;
             this.controllerClient = controllerClient;
         }
 
-        public List<object> GetJointValues(long timeOutMilliseconds = 60000)
+        public class RobotState
+        {
+            public List<string> jointNames;
+            public List<double> jointValues;
+            public Dictionary<string, List<double>> tools;
+        }
+
+        public RobotState GetJointValues(long timeOutMilliseconds = 60000)
         {
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
@@ -380,14 +411,14 @@ namespace mujincontrollerclient
             // 結果は無視します。
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
 
-            List<object> result = this.Execute(timeOutMilliseconds);
-
-            Dictionary<string, object> pair = (Dictionary<string, object>)result[0];
-            Dictionary<string, object> jointValuesMap = (Dictionary<string, object>)pair["output"];
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
+            Dictionary<string, object> jointValuesMap = (Dictionary<string, object>)result["output"];
             // 走行軸、J1,J2,J3,J5,J6,ハンド
-            List<object> jointValues = (List<object>)jointValuesMap["currentjointvalues"];
-
-            return jointValues;
+            RobotState state = new RobotState();
+            state.jointNames = (List<string>)jointValuesMap["jointnames"];
+            state.jointValues = (List<double>)jointValuesMap["currentjointvalues"];
+            state.tools = (Dictionary<string,  List<double> >)jointValuesMap["tools"];
+            return state;
         }
 
         public void MoveJoints(List<double> jointValues, List<int> jointIndices, long timeOutMilliseconds = 60000)
@@ -409,8 +440,7 @@ namespace mujincontrollerclient
 
             // 結果は無視します。
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
-
-            List<object> result = this.Execute(timeOutMilliseconds);
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
         }
 
         public void MoveToHandPosition(long timeOutMilliseconds = 5000)
@@ -429,10 +459,8 @@ namespace mujincontrollerclient
             string message = command.GetString();
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
-
-            List<object> result = this.Execute(timeOutMilliseconds);
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
         }
-
 
         public void MoveToArea(long timeOutMilliseconds = 60000)
         {
@@ -450,8 +478,7 @@ namespace mujincontrollerclient
 
         }
 
-
-        private List<object> Execute(long timeOutMilliseconds)
+        private Dictionary<string, object> Execute(long timeOutMilliseconds)
         {
             string apiParameters = string.Format("task/{0}/", this.taskPrimaryKey);
             // 空のメッセージを送るようです。
@@ -459,31 +486,42 @@ namespace mujincontrollerclient
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.POST, apiParameters, message);
 
-            List<object> result = new List<object>();
-
+            object result = null;
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
 
             do
             {
+                if (stopWatch.ElapsedMilliseconds > timeOutMilliseconds)
+                {
+                    // should cancel the task using jsonMessage["jobpk"]
+                    throw new ClientException("timed out");
+                }
                 result = this.GetResult();
+            } while (result == null);
 
-                if (stopWatch.ElapsedMilliseconds > timeOutMilliseconds) return result;
-            } while (result.Count == 0);
-
-            return result;
+            Dictionary<string, object> resultdict = (Dictionary<string, object>)result;
+            if (resultdict. ContainsKey("errormessage"))
+            {
+                string errormessage = (string)resultdict["errormessage"];
+                if (errormessage.Count() > 0)
+                {
+                    throw new ClientException(errormessage);
+                }
+            }
+            return resultdict;
         }
 
-        private List<object> GetResult()
+        private object GetResult()
         {
             string apiParameters = string.Format("task/{0}/result/?format=json&limit=1&optimization=None", this.taskPrimaryKey);
-
-            List<object> objects = new List<object>();
-
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.GET, apiParameters);
-            objects = (List<object>)jsonMessage["objects"];
-
-            return objects;
+            List<object> objects  = (List<object>)jsonMessage["objects"];
+            if (objects.Count == 0)
+            {
+                return null;
+            }
+            return objects[0];
         }
 
     }
