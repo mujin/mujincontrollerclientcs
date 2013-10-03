@@ -1,4 +1,4 @@
-﻿// -*- coding: utf-8 -*-
+// -*- coding: utf-8 -*-
 // Copyright (C) 2013 MUJIN Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using fastJSON;
+//using mujincontrollerclientcs.DataObjects;
 using System.Diagnostics;
 
 namespace mujincontrollerclient
@@ -36,14 +37,13 @@ namespace mujincontrollerclient
         protected ClientException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
     }
 
-    public enum HttpMethod { GET, POST, PUT }
+    public enum HttpMethod{ GET, POST, PUT }
 
     public class ControllerClient
     {
         private string _baseuri, _baseapiuri;
-        private CredentialCache _credentials;
+        private System.Net.NetworkCredential _credentials;
         private string _basewebdavuri;
-        private string _username, _password;
         private CookieContainer _cookies;
         private string _csrftoken;
 
@@ -75,18 +75,13 @@ namespace mujincontrollerclient
                 _basewebdavuri = string.Format("%su/%s/", _baseuri, username);
             }
 
-            //_credentials = new System.Net.NetworkCredential(username, password);
+            _credentials = new System.Net.NetworkCredential(username, password);
             _cookies = new CookieContainer();
-            _username = username;
-            _password = password;
-            _credentials = new CredentialCache();
-            _credentials.Add(new Uri("https://controller.mujin.co.jp/"), "Basic", new NetworkCredential(_username, _password));
-
 
             HttpWebRequest request1 = _GetWebRequest(_baseuri + "login/", "GET");
             using (HttpWebResponse response = (HttpWebResponse)request1.GetResponse())
             {
-                if (true) //response.StatusCode == HttpStatusCode.Redirect)
+                if (response.StatusCode == HttpStatusCode.Redirect)
                 {
                     // Response is ignored.
                     HttpWebRequest request2 = _GetWebRequest(_baseapiuri, "GET");
@@ -124,13 +119,8 @@ namespace mujincontrollerclient
                     }
                     using (HttpWebResponse response3 = (HttpWebResponse)request3.GetResponse())
                     {
-                        foreach (Cookie item in response3.Cookies)
-                        {
-                            if (item.Name == "csrftoken")
-                            {
-                                _csrftoken = item.Value;
-                            }
-                        }
+
+
                     }
                 }
             }
@@ -147,26 +137,25 @@ namespace mujincontrollerclient
         {
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.Method = method;
-            httpWebRequest.Credentials = _credentials;
-            SetBasicAuthHeader(httpWebRequest, _username, _password);
+            //httpWebRequest.Credentials = _credentials;
+            SetBasicAuthHeader(httpWebRequest, "testuser", "pass");
             httpWebRequest.ContentType = "application/json; charset=UTF-8";
             httpWebRequest.CookieContainer = _cookies;
-            httpWebRequest.PreAuthenticate = false;
+            httpWebRequest.PreAuthenticate = true;
             httpWebRequest.UserAgent = "controllerclientcs";
             if (_csrftoken != null)
             {
                 httpWebRequest.Headers.Add("X-CSRFToken", _csrftoken);
-                httpWebRequest.Referer = _baseuri;
             }
             return httpWebRequest;
         }
 
         public Dictionary<string, object> GetJsonMessage(HttpMethod method, string apiParameters, string message = null)
         {
-            switch (method)
+            switch(method)
             {
-                case HttpMethod.GET: return this.GetJsonMessage(apiParameters);
-                case HttpMethod.POST: return this.GetJsonMessage(apiParameters, message, "POST");
+                case HttpMethod.GET: return this.GetJsonMessage(apiParameters); 
+                case HttpMethod.POST: return this.GetJsonMessage(apiParameters, message, "POST"); 
                 case HttpMethod.PUT: return this.GetJsonMessage(apiParameters, message, "PUT");
                 default: return null;
             }
@@ -267,8 +256,16 @@ namespace mujincontrollerclient
             {
                 foreach (Dictionary<string, object> keyValuePair in tasks)
                 {
-                    string taskPrimaryKey = keyValuePair["pk"].ToString();
-                    return new Task(taskPrimaryKey, taskName, controllerip, controllerport, this.controllerClient);
+                    string taskPrimaryKey = (string)keyValuePair["pk"];
+                    string tasktype = (string)keyValuePair["tasktype"];
+                    if (tasktype == "binpicking")
+                    {
+                        return new BinPickingTask(taskPrimaryKey, taskName, controllerip, controllerport, this.controllerClient);
+                    }
+                    else
+                    {
+                        throw new ClientException("unsupported task type: " + tasktype);
+                    }
                 }
             }
 
@@ -280,11 +277,25 @@ namespace mujincontrollerclient
             jsonMessage = controllerClient.GetJsonMessage(HttpMethod.POST, apiParameters, message);
 
             string taskPrimaryKeyNew = jsonMessage["pk"].ToString();
-            return new Task(taskPrimaryKeyNew, taskName, controllerip, controllerport, this.controllerClient);
+            if (taskType == "binpicking")
+            {
+                return new BinPickingTask(taskPrimaryKeyNew, taskName, controllerip, controllerport, this.controllerClient);
+            }
+            else
+            {
+                throw new ClientException("unsupported task type: " + taskType);
+            }
         }
     }
 
     public class Task
+    {
+    };
+
+    /// <summary>
+    ///  "binpicking" task
+    /// </summary>
+    public class BinPickingTask : Task
     {
         private string taskPrimaryKey;
         private string taskName;
@@ -296,11 +307,31 @@ namespace mujincontrollerclient
         private class Command
         {
             private string command = null;
+            /*
+            public Command Add(string key, object value)
+            {
+                Type type = value.GetType();
+              
+                if (type == typeof(string))
+                {
+                    command = (command == null) ? string.Format("\"{0}\": \"{1}\"", key, value)
+                        : command += string.Format(", \"{0}\": \"{1}\"", key, value);
+                }
+                else
+                {
+                    command = (command == null) ? string.Format("\"{0}\": {1}", key, value)
+                        : command += string.Format(", \"{0}\": {1}", key, value);
+                }
 
+                return this;
+            }
+             */
+
+            
             public Command Add(string key, string value)
             {
-                command = (command == null) ? string.Format("\"{0}\": \"{1}\"", key, value)
-                    : command += string.Format(", \"{0}\": \"{1}\"", key, value);
+                command = (command == null) ? string.Format("\"{0}\": \"{1}\"", key, value) 
+                    : command += string.Format(", \"{0}\": \"{1}\"", key, value); 
                 return this;
             }
 
@@ -317,6 +348,7 @@ namespace mujincontrollerclient
                     : command += string.Format(", \"{0}\": {1}", key, value);
                 return this;
             }
+            
 
             public Command Add<T>(string key, List<T> objects)
             {
@@ -346,17 +378,23 @@ namespace mujincontrollerclient
             }
         }
 
-        public Task(string taskPrimaryKey, string taskName, string controllerip, int controllerport, ControllerClient controllerClient)
+        public BinPickingTask(string taskPrimaryKey, string taskName, string controllerip, int controllerport, ControllerClient controllerClient)
         {
             this.taskPrimaryKey = taskPrimaryKey;
             this.taskName = taskName;
-            this.controllerClient = controllerClient;
+            this.controllerip = controllerip;
             this.controllerport = controllerport;
             this.controllerClient = controllerClient;
-            this.controllerip = controllerip;
         }
 
-        public List<object> GetJointValues(long timeOutMilliseconds = 60000)
+        public class RobotState
+        {
+            public List<string> jointNames;
+            public List<double> jointValues;
+            public Dictionary<string, List<double>> tools;
+        }
+
+        public RobotState GetJointValues(long timeOutMilliseconds = 60000)
         {
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
@@ -373,14 +411,14 @@ namespace mujincontrollerclient
             // 結果は無視します。
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
 
-            List<object> result = this.Execute(timeOutMilliseconds);
-
-            Dictionary<string, object> pair = (Dictionary<string, object>)result[0];
-            Dictionary<string, object> jointValuesMap = (Dictionary<string, object>)pair["output"];
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
+            Dictionary<string, object> jointValuesMap = (Dictionary<string, object>)result["output"];
             // 走行軸、J1,J2,J3,J5,J6,ハンド
-            List<object> jointValues = (List<object>)jointValuesMap["currentjointvalues"];
-
-            return jointValues;
+            RobotState state = new RobotState();
+            state.jointNames = (List<string>)jointValuesMap["jointnames"];
+            state.jointValues = (List<double>)jointValuesMap["currentjointvalues"];
+            state.tools = (Dictionary<string,  List<double> >)jointValuesMap["tools"];
+            return state;
         }
 
         public void MoveJoints(List<double> jointValues, List<int> jointIndices, long timeOutMilliseconds = 60000)
@@ -402,14 +440,13 @@ namespace mujincontrollerclient
 
             // 結果は無視します。
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
-
-            List<object> result = this.Execute(timeOutMilliseconds);
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
         }
 
         public void MoveToHandPosition(long timeOutMilliseconds = 5000)
         {
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
-
+            
             Command apistring = new Command();
             apistring.Add("controllerip", this.controllerip);
             apistring.Add("controllerport", this.controllerport);
@@ -422,14 +459,12 @@ namespace mujincontrollerclient
             string message = command.GetString();
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
-
-            List<object> result = this.Execute(timeOutMilliseconds);
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
         }
-
 
         public void MoveToArea(long timeOutMilliseconds = 60000)
         {
-
+           
         }
 
 
@@ -443,8 +478,7 @@ namespace mujincontrollerclient
 
         }
 
-
-        private List<object> Execute(long timeOutMilliseconds)
+        private Dictionary<string, object> Execute(long timeOutMilliseconds)
         {
             string apiParameters = string.Format("task/{0}/", this.taskPrimaryKey);
             // 空のメッセージを送るようです。
@@ -452,31 +486,42 @@ namespace mujincontrollerclient
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.POST, apiParameters, message);
 
-            List<object> result = new List<object>();
-
+            object result = null;
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
 
             do
             {
+                if (stopWatch.ElapsedMilliseconds > timeOutMilliseconds)
+                {
+                    // should cancel the task using jsonMessage["jobpk"]
+                    throw new ClientException("timed out");
+                }
                 result = this.GetResult();
+            } while (result == null);
 
-                if (stopWatch.ElapsedMilliseconds > timeOutMilliseconds) return result;
-            } while (result.Count == 0);
-
-            return result;
+            Dictionary<string, object> resultdict = (Dictionary<string, object>)result;
+            if (resultdict. ContainsKey("errormessage"))
+            {
+                string errormessage = (string)resultdict["errormessage"];
+                if (errormessage.Count() > 0)
+                {
+                    throw new ClientException(errormessage);
+                }
+            }
+            return resultdict;
         }
 
-        private List<object> GetResult()
+        private object GetResult()
         {
             string apiParameters = string.Format("task/{0}/result/?format=json&limit=1&optimization=None", this.taskPrimaryKey);
-
-            List<object> objects = new List<object>();
-
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.GET, apiParameters);
-            objects = (List<object>)jsonMessage["objects"];
-
-            return objects;
+            List<object> objects  = (List<object>)jsonMessage["objects"];
+            if (objects.Count == 0)
+            {
+                return null;
+            }
+            return objects[0];
         }
 
     }
