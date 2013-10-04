@@ -11,7 +11,7 @@ namespace getsceneinfo
     {
         static void Main(string[] args)
         {
-            string mujinIpAddress = "http://192.168.11.17:80/";
+            string mujinIpAddress = "http://192.168.11.12:80/";
             string scenePrimaryKey = "irex2013.mujin.dae";
             string username = "testuser";
             string password = "pass";

@@ -389,9 +389,9 @@ namespace mujincontrollerclient
 
         public class RobotState
         {
-            public List<string> jointNames;
-            public List<double> jointValues;
-            public Dictionary<string, List<double>> tools;
+            public string[] jointNames;
+            public double[] jointValues;
+            public Dictionary<string, double[]> tools; // each tool is X,Y,Z,RX,RY,RZ similar to densowave format
         }
 
         public RobotState GetJointValues(long timeOutMilliseconds = 60000)
@@ -415,9 +415,33 @@ namespace mujincontrollerclient
             Dictionary<string, object> jointValuesMap = (Dictionary<string, object>)result["output"];
             // 走行軸、J1,J2,J3,J5,J6,ハンド
             RobotState state = new RobotState();
-            state.jointNames = (List<string>)jointValuesMap["jointnames"];
-            state.jointValues = (List<double>)jointValuesMap["currentjointvalues"];
-            state.tools = (Dictionary<string,  List<double> >)jointValuesMap["tools"];
+            List<object> jointnames = (List<object>)jointValuesMap["jointnames"];
+            state.jointNames = new string[jointnames.Count];
+            for (int i = 0; i < jointnames.Count; i++)
+            {
+                state.jointNames[i] = (string)jointnames[i];
+            }
+            List<object> currentjointvalues = (List<object>)jointValuesMap["currentjointvalues"];
+            Debug.Assert(currentjointvalues.Count == jointnames.Count);
+            state.jointValues = new double[currentjointvalues.Count];
+            for (int i = 0; i < currentjointvalues.Count; ++i)
+            {
+                state.jointValues[i] = (double)currentjointvalues[i];
+            }
+            Dictionary<string,object> tools = (Dictionary<string,  object>)jointValuesMap["tools"];
+            state.tools = new Dictionary<string, double[]>();
+            foreach (KeyValuePair<string, object> keyvalue in tools)
+            {
+                List<object> toolvalues = (List<object>)keyvalue.Value;
+                Debug.Assert(toolvalues.Count == 6);
+                double[] dsttoolvalues = new double[6];
+                for (int i = 0; i < 6; ++i)
+                {
+                    dsttoolvalues[i] = (double)toolvalues[i];
+                }
+                state.tools[keyvalue.Key] = dsttoolvalues;
+                
+            }
             return state;
         }
 
@@ -500,6 +524,8 @@ namespace mujincontrollerclient
                 result = this.GetResult();
             } while (result == null);
 
+            System.Threading.Thread.Sleep(100);
+            result = this.GetResult();
             Dictionary<string, object> resultdict = (Dictionary<string, object>)result;
             if (resultdict. ContainsKey("errormessage"))
             {
