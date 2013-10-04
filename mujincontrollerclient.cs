@@ -524,7 +524,7 @@ namespace mujincontrollerclient
                 result = this.GetResult();
             } while (result == null);
 
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(10);
             result = this.GetResult();
             Dictionary<string, object> resultdict = (Dictionary<string, object>)result;
             if (resultdict. ContainsKey("errormessage"))
