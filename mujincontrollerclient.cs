@@ -22,7 +22,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using fastJSON;
-//using mujincontrollerclientcs.DataObjects;
 using System.Diagnostics;
 
 namespace mujincontrollerclient
@@ -39,6 +38,60 @@ namespace mujincontrollerclient
 
     public enum HttpMethod{ GET, POST, PUT }
 
+    // This class should be replaced with fastJson.
+    public class Command
+    {
+        private string command = null;
+
+        public Command Add(string key, string value)
+        {
+            command = (command == null) ? string.Format("\"{0}\": \"{1}\"", key, value)
+                : command += string.Format(", \"{0}\": \"{1}\"", key, value);
+            return this;
+        }
+
+        public Command Add(string key, int value)
+        {
+            command = (command == null) ? string.Format("\"{0}\": {1}", key, value)
+                : command += string.Format(", \"{0}\": {1}", key, value);
+            return this;
+        }
+
+        public Command Add(string key, float value)
+        {
+            command = (command == null) ? string.Format("\"{0}\": {1}", key, value)
+                : command += string.Format(", \"{0}\": {1}", key, value);
+            return this;
+        }
+
+        public Command Add<T>(string key, List<T> objects)
+        {
+            string arrayString = null;
+
+            foreach (T obj in objects)
+            {
+                arrayString += (arrayString == null) ? obj.ToString() : string.Format(", {0}", obj.ToString());
+            }
+
+            command += (command == null) ? string.Format("\"{0}\": [{1}]", key, arrayString)
+                : string.Format(", \"{0}\": [{1}]", key, arrayString);
+
+            return this;
+        }
+
+        public Command Add(string key, Command addCommand)
+        {
+            command = (command == null) ? string.Format("\"{0}\": {1}", key, addCommand.GetString())
+                : command += string.Format(", \"{0}\": {1}", key, addCommand.GetString());
+            return this;
+        }
+
+        public string GetString()
+        {
+            return string.Format("{{{0}}}", this.command);
+        }
+    }
+
     public class ControllerClient
     {
         private string _baseuri, _baseapiuri;
@@ -47,7 +100,7 @@ namespace mujincontrollerclient
         private CookieContainer _cookies;
         private string _csrftoken;
 
-        public ControllerClient(string username, string password, string baseuri = null, int options = 0)
+        public ControllerClient(string username, string password, string baseuri = null)
         {
             if (baseuri != null)
             {
@@ -64,17 +117,9 @@ namespace mujincontrollerclient
                 _baseuri = "https://controller.mujin.co.jp/";
             }
             _baseapiuri = _baseuri + "api/v1/";
-            // hack for now since webdav server and api server could be running on different ports
-            if (_baseuri.EndsWith(":8000/") || (options & 0x80000000) != 0)
-            {
-                // testing on localhost, however the webdav server is running on port 80...
-                _basewebdavuri = string.Format("%s/u/%s/", _baseuri.Substring(0, _baseuri.Count() - 6), username);
-            }
-            else
-            {
-                _basewebdavuri = string.Format("%su/%s/", _baseuri, username);
-            }
 
+            _basewebdavuri = string.Format("%su/%s/", _baseuri, username);
+   
             _credentials = new System.Net.NetworkCredential(username, password);
             _cookies = new CookieContainer();
 
@@ -150,6 +195,23 @@ namespace mujincontrollerclient
             return httpWebRequest;
         }
 
+        public void Initialize(string referenceUri, string sceneType, string referenceSceneType, string uri)
+        {
+            Command command = new Command();
+            command.Add("reference_uri", referenceUri);
+            command.Add("scenetype", sceneType);
+            command.Add("reference_scenetype", referenceSceneType);
+            command.Add("uri", uri);
+            string messageBody = command.GetString();
+
+            Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.POST, "scene/?format=json&fields=name,pk,uri&overwrite=1", messageBody);
+
+
+            string primaryKey = (string)jsonMessage["pk"];
+            
+            
+        }
+
         public Dictionary<string, object> GetJsonMessage(HttpMethod method, string apiParameters, string message = null)
         {
             switch(method)
@@ -204,6 +266,9 @@ namespace mujincontrollerclient
         {
             string apiParameters = string.Format("scene/{0}/?format=json&fields=pk", scenePrimaryKey);
             Dictionary<string, object> jsonMessage = this.GetJsonMessage(apiParameters);
+
+
+
 
             System.Diagnostics.Debug.Assert(jsonMessage["pk"].Equals(scenePrimaryKey));
 
@@ -303,80 +368,7 @@ namespace mujincontrollerclient
         private int controllerport;
         private ControllerClient controllerClient;
 
-        // This class should be replaced with fastJson.
-        private class Command
-        {
-            private string command = null;
-            /*
-            public Command Add(string key, object value)
-            {
-                Type type = value.GetType();
-              
-                if (type == typeof(string))
-                {
-                    command = (command == null) ? string.Format("\"{0}\": \"{1}\"", key, value)
-                        : command += string.Format(", \"{0}\": \"{1}\"", key, value);
-                }
-                else
-                {
-                    command = (command == null) ? string.Format("\"{0}\": {1}", key, value)
-                        : command += string.Format(", \"{0}\": {1}", key, value);
-                }
 
-                return this;
-            }
-             */
-
-            
-            public Command Add(string key, string value)
-            {
-                command = (command == null) ? string.Format("\"{0}\": \"{1}\"", key, value) 
-                    : command += string.Format(", \"{0}\": \"{1}\"", key, value); 
-                return this;
-            }
-
-            public Command Add(string key, int value)
-            {
-                command = (command == null) ? string.Format("\"{0}\": {1}", key, value)
-                    : command += string.Format(", \"{0}\": {1}", key, value);
-                return this;
-            }
-
-            public Command Add(string key, float value)
-            {
-                command = (command == null) ? string.Format("\"{0}\": {1}", key, value)
-                    : command += string.Format(", \"{0}\": {1}", key, value);
-                return this;
-            }
-            
-
-            public Command Add<T>(string key, List<T> objects)
-            {
-                string arrayString = null;
-
-                foreach (T obj in objects)
-                {
-                    arrayString += (arrayString == null) ? obj.ToString() : string.Format(", {0}", obj.ToString());
-                }
-
-                command += (command == null) ? string.Format("\"{0}\": [{1}]", key, arrayString)
-                    : string.Format(", \"{0}\": [{1}]", key, arrayString);
-
-                return this;
-            }
-
-            public Command Add(string key, Command addCommand)
-            {
-                command = (command == null) ? string.Format("\"{0}\": {1}", key, addCommand.GetString())
-                    : command += string.Format(", \"{0}\": {1}", key, addCommand.GetString());
-                return this;
-            }
-
-            public string GetString()
-            {
-                return string.Format("{{{0}}}", this.command);
-            }
-        }
 
         public BinPickingTask(string taskPrimaryKey, string taskName, string controllerip, int controllerport, ControllerClient controllerClient)
         {

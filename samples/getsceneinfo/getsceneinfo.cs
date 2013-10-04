@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using mujincontrollerclient;
 using System.IO;
+using mujincontrollerclient;
 
 namespace getsceneinfo
 {
@@ -21,8 +21,14 @@ namespace getsceneinfo
             int controllerport = 5008;
 
             ControllerClient controllerClient = new ControllerClient(username, password, mujinIpAddress);
+
+            controllerClient.Initialize("mujin:/irex2013/irex2013.WPJ", "mujincollada", "wincaps", "mujin:/irex2013.muin.dae");
+            
             Scene scene = controllerClient.GetScene(scenePrimaryKey);
+            
             BinPickingTask task = (BinPickingTask)scene.GetOrCreateTaskFromName(taskName, taskType, controllerip, controllerport);
+
+            //http://192.168.11.12/api/v1/eventitem/?format=json&limit=10&order_by=-datecreated
 
             //List<object> jointValues = task.GetJointValues();
 
@@ -33,7 +39,7 @@ namespace getsceneinfo
             //System.Threading.Thread.Sleep(2000);
             BinPickingTask.RobotState state = task.GetJointValues();
             //state.jointValues;
-            string test = "";
+           
         }
     }
 }
