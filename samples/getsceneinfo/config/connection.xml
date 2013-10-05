@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connection>
+	<ipaddress>http://192.168.11.12:80/</ipaddress>
+	<scenepk>irex2013.mujin.dae</scenepk>
+	<username>testuser</username>
+	<password>pass</password>
+	<taskname>testTask001</taskname>
+	<tasktype>binpicking</tasktype>
+	<controllerip>192.168.11.110</controllerip>
+	<controllerport>5008</controllerport>
+</connection>
