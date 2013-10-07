@@ -100,6 +100,11 @@ namespace mujincontrollerclient
         private CookieContainer _cookies;
         private string _csrftoken;
 
+        private CredentialCache credentials; 
+
+        private string username;
+        private string password;
+
         public ControllerClient(string username, string password, string baseuri = null)
         {
             if (baseuri != null)
@@ -123,7 +128,14 @@ namespace mujincontrollerclient
             _credentials = new System.Net.NetworkCredential(username, password);
             _cookies = new CookieContainer();
 
+            this.username = username;
+            this.password = password;
+
+            credentials = new CredentialCache();
+            credentials.Add(new Uri(_baseuri), "Basic", new NetworkCredential(this.username, this.password));
+
             HttpWebRequest request1 = _GetWebRequest(_baseuri + "login/", "GET");
+
             using (HttpWebResponse response = (HttpWebResponse)request1.GetResponse())
             {
                 if (response.StatusCode == HttpStatusCode.Redirect)
@@ -182,8 +194,8 @@ namespace mujincontrollerclient
         {
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.Method = method;
-            //httpWebRequest.Credentials = _credentials;
-            SetBasicAuthHeader(httpWebRequest, "testuser", "pass");
+            httpWebRequest.Credentials = credentials; 
+            SetBasicAuthHeader(httpWebRequest, this.username, this.password);
             httpWebRequest.ContentType = "application/json; charset=UTF-8";
             httpWebRequest.CookieContainer = _cookies;
             httpWebRequest.PreAuthenticate = true;
@@ -206,10 +218,7 @@ namespace mujincontrollerclient
 
             Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.POST, "scene/?format=json&fields=name,pk,uri&overwrite=1", messageBody);
 
-
             string primaryKey = (string)jsonMessage["pk"];
-            
-            
         }
 
         public Dictionary<string, object> GetJsonMessage(HttpMethod method, string apiParameters, string message = null)
@@ -266,9 +275,6 @@ namespace mujincontrollerclient
         {
             string apiParameters = string.Format("scene/{0}/?format=json&fields=pk", scenePrimaryKey);
             Dictionary<string, object> jsonMessage = this.GetJsonMessage(apiParameters);
-
-
-
 
             System.Diagnostics.Debug.Assert(jsonMessage["pk"].Equals(scenePrimaryKey));
 
@@ -541,6 +547,5 @@ namespace mujincontrollerclient
             }
             return objects[0];
         }
-
     }
 }
