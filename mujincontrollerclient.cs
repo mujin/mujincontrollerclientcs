@@ -103,9 +103,6 @@ namespace mujincontrollerclient
 
         private CredentialCache credentials; 
 
-        private string username;
-        private string password;
-
         public ControllerClient(string username, string password, string baseuri = null)
         {
             if (baseuri != null)
@@ -195,7 +192,7 @@ namespace mujincontrollerclient
         {
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.Method = method;
-            httpWebRequest.Credentials = credentials; 
+            //httpWebRequest.Credentials = credentials; 
             SetBasicAuthHeader(httpWebRequest, this.username, this.password);
             httpWebRequest.ContentType = "application/json; charset=UTF-8";
             httpWebRequest.CookieContainer = _cookies;

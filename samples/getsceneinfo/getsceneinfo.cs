@@ -26,7 +26,7 @@ namespace getsceneinfo
 
             string mujinIpAddress = document.GetElementsByTagName("ipaddress")[0].InnerText;
             string scenePrimaryKey = document.GetElementsByTagName("scenepk")[0].InnerText;
-            string username = document.GetElementrobotStatesByTagName("username")[0].InnerText;
+            string username = document.GetElementsByTagName("username")[0].InnerText;
             string password = document.GetElementsByTagName("password")[0].InnerText;
             string taskName = document.GetElementsByTagName("taskname")[0].InnerText;
             string taskType = document.GetElementsByTagName("tasktype")[0].InnerText;
@@ -41,7 +41,7 @@ namespace getsceneinfo
             BinPickingTask task = (BinPickingTask)scene.GetOrCreateTaskFromName(taskName, taskType, controllerip, controllerport);
 
             // Test1: GetJointValues
-            //BinPickingTask.RobotState  = task.GetJointValues();
+            BinPickingTask.RobotState robotState = task.GetJointValues();
 
             /* 
             // Test2: MoveJoints
@@ -52,8 +52,12 @@ namespace getsceneinfo
             task.MoveJoints(jointValues, jointIndices);
            */
 
-            List<double> jointValues = new List<double>() { 0,0,0,0,0,0,0 };
-            List<int> jointIndices = new List<int>() { 0,1,2,3,4,5,6 };
+            List<double> jointValues = new List<double>() { 45 };
+            List<int> jointIndices = new List<int>() { 6 };
+            task.MoveJoints(jointValues, jointIndices);
+
+            jointValues = new List<double>() { 0,0,0,0,0,0,0};
+            jointIndices = new List<int>() { 0,1,2,3,4,5,6 };
             task.MoveJoints(jointValues, jointIndices);
 
             /*
