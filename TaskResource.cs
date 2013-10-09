@@ -34,7 +34,7 @@ namespace Mujin
             this.controllerClient = controllerClient;
         }
 
-        public RobotState GetJointValues(long timeOutMilliseconds = 60000)
+        public RobotState GetJointValues(long timeOutMilliseconds = 30000)
         {
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
@@ -85,19 +85,24 @@ namespace Mujin
             return state;
         }
 
-        public void MoveJoints(List<double> jointValues, List<int> jointIndices, long timeOutMilliseconds = 60000)
+        public void MoveJoints(List<double> jointValues, List<int> jointIndices, double clearance, double speed,
+            string robot, long timeOutMilliseconds = 30000)
         {
+            ClientValidator.ValidateJointValues(jointValues, jointIndices);
+            ClientValidator.ValidateClearance(clearance);
+            ClientValidator.ValidateSpeed(speed);
+
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
             Command apistring = new Command();
             apistring.Add("controllerip", this.controllerip);
             apistring.Add("controllerport", this.controllerport);
             apistring.Add("command", "MoveJoints");
-            //apistring.Add("robot","VP-5243");
+            //apistring.Add("robot",robot);
             apistring.Add("goaljoints", jointValues);
             apistring.Add("jointindices", jointIndices);
-            apistring.Add("envclearance", (float)30.0);
-            apistring.Add("speed", (float)0.2);
+            apistring.Add("envclearance", clearance);
+            apistring.Add("speed", speed);
             Command command = new Command();
             command.Add("tasktype", "binpicking");
             command.Add("taskparameters", apistring);
@@ -108,8 +113,11 @@ namespace Mujin
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
         }
 
-        public void MoveToHandPosition(List<double> goals, string goalType, string toolname, long timeOutMilliseconds = 20000)
+        public void MoveToHandPosition(List<double> goals, GoalType goalType, string toolname, double speed, long timeOutMilliseconds = 30000)
         {
+            ClientValidator.ValidateGoalPositions(goals, goalType);
+            ClientValidator.ValidateSpeed(speed);
+
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
             Command apistring = new Command();
@@ -117,9 +125,9 @@ namespace Mujin
             apistring.Add("controllerport", this.controllerport);
             apistring.Add("command", "MoveToHandPosition");
             apistring.Add("toolname", toolname);
-            apistring.Add("goaltype", goalType);
+            apistring.Add("goaltype", goalType.ToString());
             apistring.Add("goals", goals);
-            apistring.Add("speed", (float)0.2);
+            apistring.Add("speed", speed);
             Command command = new Command();
             command.Add("tasktype", "binpicking");
             command.Add("taskparameters", apistring);
@@ -130,7 +138,7 @@ namespace Mujin
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
         }
 
-        public List<double> PickAndMove(string boxname, string sensorName, string toolname, string goaltype, List<double> goalTranslationDirections, long timeOutMilliseconds = 60000)
+        public List<double> PickAndMove(string boxname, string sensorName, string toolname, GoalType goaltype, List<double> goalTranslationDirections, double speed, long timeOutMilliseconds = 60000)
         {
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
@@ -141,8 +149,8 @@ namespace Mujin
             apistring.Add("boxname", boxname);
             apistring.Add("sensorname", sensorName);
             apistring.Add("toolname", toolname);
-            apistring.Add("speed", (float)0.2);
-            apistring.Add("goaltype", goaltype);
+            apistring.Add("speed", speed);
+            apistring.Add("goaltype", goaltype.ToString());
             apistring.Add("goals", goalTranslationDirections);
             Command command = new Command();
             command.Add("tasktype", "binpicking");

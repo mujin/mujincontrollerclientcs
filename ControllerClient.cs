@@ -44,13 +44,13 @@ namespace Mujin
 
         public ControllerClient(string username, string password, string baseUri = null)
         {
-            this.username   = username;
-            this.password   = password;
-            this.baseUri    = (baseUri == null) ? DEFAULT_URI : this.EnsureLastSlash(baseUri);
+            this.username = username;
+            this.password = password;
+            this.baseUri = (baseUri == null) ? DEFAULT_URI : this.EnsureLastSlash(baseUri);
             this.baseApiUri = this.baseUri + DEFAULT_API_PATH;
 
-            string tempuri  = this.baseUri.EndsWith(":8000/") ? this.RemovePortNumberString() : this.baseUri;
-            baseWebDavUri   = string.Format("{0}u/{1}/", tempuri, username);
+            string tempuri = this.baseUri.EndsWith(":8000/") ? this.RemovePortNumberString() : this.baseUri;
+            baseWebDavUri = string.Format("{0}u/{1}/", tempuri, username);
 
             credentials = new CredentialCache();
             credentials.Add(new Uri(this.baseUri), "Basic", new NetworkCredential(this.username, this.password));
@@ -91,7 +91,7 @@ namespace Mujin
             command.Add("uri", uri);
             string messageBody = command.GetString();
 
-            Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.POST, 
+            Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.POST,
                 "scene/?format=json&fields=name,pk,uri&overwrite=1", messageBody);
 
             string primaryKey = (string)jsonMessage["pk"];
@@ -109,13 +109,13 @@ namespace Mujin
 
         private HttpWebRequest CreateWebRequest(string path, HttpMethod method)
         {
-            HttpWebRequest httpWebRequest   = (HttpWebRequest)WebRequest.Create(path);
-            httpWebRequest.Method           = method.ToString();
-            httpWebRequest.Credentials      = credentials;
-            httpWebRequest.ContentType      = "application/json; charset=UTF-8";
-            httpWebRequest.CookieContainer  = cookies;
-            httpWebRequest.PreAuthenticate  = true;
-            httpWebRequest.UserAgent        = "controllerclientcs";
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(path);
+            httpWebRequest.Method = method.ToString();
+            httpWebRequest.Credentials = credentials;
+            httpWebRequest.ContentType = "application/json; charset=UTF-8";
+            httpWebRequest.CookieContainer = cookies;
+            httpWebRequest.PreAuthenticate = true;
+            httpWebRequest.UserAgent = "controllerclientcs";
 
             this.AddAuthorizationHeader(httpWebRequest);
             this.AddCsrfTokenHeader(httpWebRequest);
@@ -187,10 +187,10 @@ namespace Mujin
 
         private Dictionary<string, object> GetJsonMessageGet(string apiParameters)
         {
-            HttpWebRequest request      = CreateWebRequest(baseApiUri + apiParameters, HttpMethod.GET);
-            HttpWebResponse response    = (HttpWebResponse)request.GetResponse();
-            StreamReader reader         = new StreamReader(response.GetResponseStream());
-            string responsestring       = reader.ReadToEnd();
+            HttpWebRequest request = CreateWebRequest(baseApiUri + apiParameters, HttpMethod.GET);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            string responsestring = reader.ReadToEnd();
             Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
 
             reader.Close();
@@ -201,13 +201,13 @@ namespace Mujin
 
         private Dictionary<string, object> GetJsonMessagePostOrPut(string apiParameters, string message, HttpMethod method)
         {
-            HttpWebRequest postWebRequest   = CreateWebRequest(baseApiUri + apiParameters, method);
+            HttpWebRequest postWebRequest = CreateWebRequest(baseApiUri + apiParameters, method);
             StreamWriter writer = new StreamWriter(postWebRequest.GetRequestStream());
             writer.Write(message);
             writer.Close();
-            
+
             HttpWebResponse postWebResponse = (HttpWebResponse)postWebRequest.GetResponse();
-            StreamReader reader             = new StreamReader(postWebResponse.GetResponseStream());
+            StreamReader reader = new StreamReader(postWebResponse.GetResponseStream());
             string responsestring = reader.ReadToEnd();
             Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
 

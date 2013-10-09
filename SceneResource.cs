@@ -12,7 +12,7 @@ namespace Mujin
 
         public SceneResource(string scenePrimaryKey, ControllerClient controllerClient)
         {
-            this.scenePrimaryKey  = scenePrimaryKey;
+            this.scenePrimaryKey = scenePrimaryKey;
             this.controllerClient = controllerClient;
         }
 
@@ -45,13 +45,17 @@ namespace Mujin
         private Task CreateTaskFromName(string taskName, string taskType, string controllerip, int controllerport)
         {
             string apiParameters = string.Format("scene/{0}/task/?format=json&fields=pk", this.scenePrimaryKey);
-            string message = string.Format("{{\"name\":\"{0}\", \"tasktype\":\"{1}\", \"scenepk\":\"{2}\"}}",
-                taskName, taskType, this.scenePrimaryKey);
+
+            Command command = new Command();
+            command.Add("name", taskName);
+            command.Add("tasktype", taskType);
+            command.Add("scenepk", this.scenePrimaryKey);
+            string message = command.GetString();
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.POST, apiParameters, message);
 
             string taskPrimaryKeyNew = jsonMessage["pk"].ToString();
-            string taskTypeNew       = jsonMessage["tasktype"].ToString();
+            string taskTypeNew = jsonMessage["tasktype"].ToString();
 
             if (!taskType.Equals(taskTypeNew)) throw new ClientException("unsupported task type: " + taskTypeNew);
             return new BinPickingTask(taskPrimaryKeyNew, taskName, controllerip, controllerport, this.controllerClient);

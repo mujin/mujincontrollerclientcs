@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using Mujin;
-//using mujincontrollerclient;
 using System.Xml;
 using System.Diagnostics;
 
@@ -40,40 +39,36 @@ namespace getsceneinfo
             SceneResource scene = controllerClient.GetScene(scenePrimaryKey);
             BinPickingTask task = (BinPickingTask)scene.GetOrCreateTaskFromName(taskName, taskType, controllerip, controllerport);
 
-
-            //Scene scene = controllerClient.GetScene(scenePrimaryKey);
-            //BinPickingTask task = (BinPickingTask)scene.GetOrCreateTaskFromName(taskName, taskType, controllerip, controllerport);
-
             // Test1: GetJointValues
             RobotState robotState = task.GetJointValues();
 
-            /* 
+           /*
             // Test2: MoveJoints
             robotState.jointValues[1] += 30;
             robotState.jointValues[3] -= 30;
             List<double> jointValues = new List<double>() { robotState.jointValues[1], robotState.jointValues[3] };
             List<int> jointIndices = new List<int>(){1, 3};
-            task.MoveJoints(jointValues, jointIndices);
-           */
+            task.MoveJoints(jointValues, jointIndices, 30, 0.2, "");
+            */
+            
+           List<double> jointValues = new List<double>() { 45 };
+           List<int> jointIndices = new List<int>() { 6 };
+           task.MoveJoints(jointValues, jointIndices, 30, 0.2, "");
 
-            List<double> jointValues = new List<double>() { 45 };
-            List<int> jointIndices = new List<int>() { 6 };
-            task.MoveJoints(jointValues, jointIndices);
-
-            jointValues = new List<double>() { 0,0,0,0,0,0,0};
-            jointIndices = new List<int>() { 0,1,2,3,4,5,6 };
-            task.MoveJoints(jointValues, jointIndices);
-
+           jointValues = new List<double>() { 0, 0, 0, 0, 0, 0, 0 };
+           jointIndices = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
+           task.MoveJoints(jointValues, jointIndices, 30, 0.2, "");
+           
             /*
             // Test3: MoveToHandPosition
             double[] basepos = robotState.tools["1Base"];
-            basepos[1] += 1;
-            basepos[3] -= 1;
-            task.MoveToHandPosition(new List<double>(basepos), "transform6d", "1Base");
-             */
+            basepos[1] += 50;
+            basepos[3] -= 50;
+            task.MoveToHandPosition(new List<double>(basepos), GoalType.transform6d, "1Base", 0.2);
+            */
 
             // Test4: PickAndMove
-            task.PickAndMove("container3", "camera3", "1Base", "translationdirection5d", new List<double>() { 1900, 240, 700, 0, 0, 1 });
+            task.PickAndMove("container3", "camera3", "1Base", GoalType.translationdirection5d, new List<double>() { 1900, 240, 700, 0, 0, 1 }, 0.2);
         }
     }
 }
