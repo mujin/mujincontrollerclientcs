@@ -82,6 +82,21 @@ namespace Mujin
             }
         }
 
+        public void Initialize(string referenceUri, string sceneType, string referenceSceneType, string uri)
+        {
+            Command command = new Command();
+            command.Add("reference_uri", referenceUri);
+            command.Add("scenetype", sceneType);
+            command.Add("reference_scenetype", referenceSceneType);
+            command.Add("uri", uri);
+            string messageBody = command.GetString();
+
+            Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.POST, 
+                "scene/?format=json&fields=name,pk,uri&overwrite=1", messageBody);
+
+            string primaryKey = (string)jsonMessage["pk"];
+        }
+
         private string EnsureLastSlash(string uri)
         {
             return uri.EndsWith("/") ? uri : uri += "/";
