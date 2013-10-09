@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-//using Mujin;
-using mujincontrollerclient;
+using Mujin;
+//using mujincontrollerclient;
 using System.Xml;
 using System.Diagnostics;
 
@@ -18,7 +18,7 @@ namespace getsceneinfo
             // string xmlFilepath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "..\\..\\samples\\getsceneinfo\\config\\connection.xml";
 
             // Custom XML path;
-            string xmlFilepath = "C:\\connection.xml";
+            string xmlFilepath = "C:\\connection2.xml";
 
             XmlDocument document = new XmlDocument();
             StreamReader reader = new StreamReader(xmlFilepath, Encoding.UTF8);
@@ -37,11 +37,15 @@ namespace getsceneinfo
 
             //controllerClient.Initialize("mujin:/irex2013/irex2013.WPJ", "mujincollada", "wincaps", "mujin:/irex2013.mujin.dae");
 
-            Scene scene = controllerClient.GetScene(scenePrimaryKey);
+            SceneResource scene = controllerClient.GetScene(scenePrimaryKey);
             BinPickingTask task = (BinPickingTask)scene.GetOrCreateTaskFromName(taskName, taskType, controllerip, controllerport);
 
+
+            //Scene scene = controllerClient.GetScene(scenePrimaryKey);
+            //BinPickingTask task = (BinPickingTask)scene.GetOrCreateTaskFromName(taskName, taskType, controllerip, controllerport);
+
             // Test1: GetJointValues
-            BinPickingTask.RobotState robotState = task.GetJointValues();
+            RobotState robotState = task.GetJointValues();
 
             /* 
             // Test2: MoveJoints
