@@ -88,7 +88,7 @@ namespace Mujin
 
             foreach (int index in jointIndices)
             {
-                if (index < 0 || 6 < index)
+                if (index < 0 || 7 < index)
                     throw new ClientException("Invalid parameters. Joint index out of bound.");
 
                 double value = jointValues[pointer++];

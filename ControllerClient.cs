@@ -140,7 +140,23 @@ namespace Mujin
 
         private HttpWebResponse GetResponse(HttpWebRequest webRequest, List<HttpStatusCode> expectedStatusCodes)
         {
-            HttpWebResponse response = (HttpWebResponse)webRequest.GetResponse();
+            HttpWebResponse response = null;
+
+            try
+            {
+                response = (HttpWebResponse)webRequest.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status.Equals(WebExceptionStatus.ProtocolError) && ex.ToString().Contains("401")) 
+                    throw new ClientException("401 error. Confirm username and password.");
+
+                if (ex.Status.Equals(WebExceptionStatus.NameResolutionFailure))
+                    throw new ClientException("Name resolution error. Confirm Mujin Controller server address.");
+
+                if (ex.Status.Equals(WebExceptionStatus.ConnectFailure))
+                    throw new ClientException("Cannot connect to server. Confirm Mujin Controller port number, etc.");
+            }
 
             if (!expectedStatusCodes.Contains(response.StatusCode))
             {
@@ -188,7 +204,19 @@ namespace Mujin
         private Dictionary<string, object> GetJsonMessageGet(string apiParameters)
         {
             HttpWebRequest request = CreateWebRequest(baseApiUri + apiParameters, HttpMethod.GET);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            HttpWebResponse response = null;
+
+            try
+            {
+                response = (HttpWebResponse)request.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status.Equals(WebExceptionStatus.ProtocolError) && ex.ToString().Contains("500"))
+                    throw new ClientException("Mujin controller error. Possible error reason : (a) invalid scene primary key");
+
+            }
+            
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string responsestring = reader.ReadToEnd();
             Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);

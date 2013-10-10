@@ -88,9 +88,9 @@ namespace Mujin
         public void MoveJoints(List<double> jointValues, List<int> jointIndices, double clearance, double speed,
             string robot, long timeOutMilliseconds = 30000)
         {
-            ClientValidator.ValidateJointValues(jointValues, jointIndices);
-            ClientValidator.ValidateClearance(clearance);
-            ClientValidator.ValidateSpeed(speed);
+            //ClientValidator.ValidateJointValues(jointValues, jointIndices);
+            //ClientValidator.ValidateClearance(clearance);
+            //ClientValidator.ValidateSpeed(speed);
 
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
@@ -115,8 +115,8 @@ namespace Mujin
 
         public void MoveToHandPosition(List<double> goals, GoalType goalType, string toolname, double speed, long timeOutMilliseconds = 30000)
         {
-            ClientValidator.ValidateGoalPositions(goals, goalType);
-            ClientValidator.ValidateSpeed(speed);
+            //ClientValidator.ValidateGoalPositions(goals, goalType);
+            //ClientValidator.ValidateSpeed(speed);
 
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
@@ -205,8 +205,14 @@ namespace Mujin
                 string errormessage = (string)resultdict["errormessage"];
                 if (errormessage.Count() > 0)
                 {
-                    errormessage += "Make sure (a) Firewall is disabled, (b) Server is restarted.";
-                    throw new ClientException(message);
+                    if(errormessage.Contains("timeout to get response"))
+                    {
+                        errormessage += "... MC cannot connect to the controller. Possible error reason: " +
+                        "(a) Controller ip is not correct, (c) Controller port number is not correct " +
+                        "(d) Robot controller is down. (e) b-CAP listener is not up. " +
+                        "(f) Firewall blocks packets. (g) Server is not restarted.";
+                    }
+                    throw new ClientException(errormessage);
                 }
             }
             return resultdict;
@@ -224,5 +230,4 @@ namespace Mujin
             return objects[0];
         }
     }
-
 }
