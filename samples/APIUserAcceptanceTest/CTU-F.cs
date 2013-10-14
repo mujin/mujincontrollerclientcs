@@ -14,7 +14,7 @@ namespace APIUserAcceptanceTest
             BinPickingTask task = CTUC00100();
 
             // For transform6d, X[mm], Y[mm], Z[mm], RX[deg], RY[deg], RZ[deg]
-            List<double> goalpos = new List<double>() { 1500, 900, 500, 0, 0, 0 };
+            List<double> goalpos = new List<double>() { 1000.5, 800, 1050, 1, -89, -89 };
 
             task.MoveToHandPosition(goalpos, GoalType.transform6d, "1Base", 0.2, 60000);
         }

@@ -15,10 +15,11 @@ namespace APIUserAcceptanceTest
             BinPickingTask task = CTUC00100();
 
             // J7(linear rail), J1, J2, J3, J5, J6, J8(servo hand)
-            List<double> jointValues = new List<double>() { -10.0, 0.0, 50.0, -100.0, 0.0, 0.0, 0.0 };
+            //List<double> jointValues = new List<double>() { -10.0, 0.0, 50.0, -100.0, 0.0, 0.0, 0.0 };
+            List<double> jointValues = new List<double>() { -800.0, 0.0, 35.0, 45.0, 0.0, 0.0, 0.0 };
             List<int> jointIndices = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };    
 
-            task.MoveJoints(jointValues, jointIndices, 30, 0.2, "");
+            task.MoveJoints(jointValues, jointIndices, 20, 0.2, "");
         }
 
         // Move robot's joints - Invalid Joint Values

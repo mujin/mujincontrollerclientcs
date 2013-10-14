@@ -12,7 +12,7 @@ namespace APIUserAcceptanceTest
         public static SceneResource CTUB00100()
         {
             ControllerClient controllerClient = CTUA00100();
-            return controllerClient.GetScene("irex2013_two.mujin.dae");
+            return controllerClient.GetScene("irex2013.mujin.dae");
         }
 
         // Get scene resource- Invalid primary key
@@ -22,7 +22,7 @@ namespace APIUserAcceptanceTest
 
             try
             {
-                controllerClient.GetScene("irex2013_two.mujin.hogehoge.dae");
+                controllerClient.GetScene("irex2013.mujin.hogehoge.dae");
             }
             catch (ClientException ex)
             {

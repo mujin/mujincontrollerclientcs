@@ -57,7 +57,23 @@ namespace APIUserAcceptanceTest
             //CTUG00600();
             //CTUG00700();
             //CTUG00800();
-            CTUG00900();
+            //CTUG00900();
+            RosenParams();
+        }
+        static void RosenParams()
+        {
+            Mujin.BinPickingTask task = CTUC00100();
+
+            // For transform6d, X[mm], Y[mm], Z[mm], RX[deg], RY[deg], RZ[deg]
+            List<double> goalpos = new List<double>() { 100,240,700,1,1,1 };
+
+            task.PickAndMove(
+                "container2",   // boxname
+                "camera1",      // sensorname
+                "1Base",        // toolname
+                Mujin.GoalType.translationdirection5d,  // goaltype
+                goalpos,
+                0.1);
         }
     }
 }

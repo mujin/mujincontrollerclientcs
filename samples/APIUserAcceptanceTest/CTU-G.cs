@@ -14,7 +14,7 @@ namespace APIUserAcceptanceTest
             BinPickingTask task = CTUC00100();
 
             // For transform6d, X[mm], Y[mm], Z[mm], RX[deg], RY[deg], RZ[deg]
-            List<double> goalpos = new List<double>() { 300, 900, 500, 0, 0, 0 };
+            List<double> goalpos = new List<double>() { 1000.5, 800, 1050, 1, -89, -89 };
 
             task.PickAndMove("container1", "camera1", "1Base", GoalType.transform6d, goalpos, 0.2, 60000);
         }
