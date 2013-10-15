@@ -138,7 +138,7 @@ namespace Mujin
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
         }
 
-        public List<double> PickAndMove(string boxname, string sensorName, string toolname, GoalType goaltype, List<double> goalTranslationDirections, double speed, long timeOutMilliseconds = 60000)
+        public WorkProperties PickAndMove(string boxname, string sensorName, string toolname, GoalType goaltype, List<double> goalTranslationDirections, double speed, long timeOutMilliseconds = 60000)
         {
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
@@ -172,7 +172,8 @@ namespace Mujin
             {
                 list.Add((double)element);
             }
-            return list;
+
+            return new WorkProperties(graspedname, list);
         }
 
         private Dictionary<string, object> Execute(long timeOutMilliseconds)

@@ -140,6 +140,18 @@ namespace Mujin
         }
     }
 
+    public class WorkProperties
+    {
+        public string objectName{get; set;}
+        public List<double> goalPosition { get; set; }
+
+        public WorkProperties(string objectName, List<double> goalPosition)
+        {
+            this.objectName = objectName;
+            this.goalPosition = goalPosition;
+        }
+    }
+
     [Serializable()]
     public class ClientException : System.Exception
     {
