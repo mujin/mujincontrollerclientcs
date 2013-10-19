@@ -161,10 +161,10 @@ namespace Mujin
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
 
-            Dictionary<string, object> resultMap = (Dictionary<string, object>)result["output"];
-
-            string graspedname = (string)resultMap["graspedname"];
-            List<object> destinationgoals = (List<object>)resultMap["destinationgoals"];
+            Dictionary<string, object> resultMap = result.ContainsKey("output") ? (Dictionary<string, object>)result["output"] : null;
+            
+            string graspedname = resultMap.ContainsKey("graspedname") ? (string)resultMap["graspedname"] : null;
+            List<object> destinationgoals = resultMap.ContainsKey("destinationgoals") ? (List<object>)resultMap["destinationgoals"] : null;
 
             List<double> list = new List<double>();
 
@@ -174,6 +174,50 @@ namespace Mujin
             }
 
             return new WorkProperties(graspedname, list);
+        }
+
+        public void OpenGripper(string robot, string toolname, string targetname, double speed, long timeOutMilliseconds = 60000)
+        {
+
+            string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
+
+            Command apistring = new Command();
+            apistring.Add("controllerip", this.controllerip);
+            apistring.Add("controllerport", this.controllerport);
+            apistring.Add("command", "OpenGripper");
+            apistring.Add("speed", speed); 
+            apistring.Add("robot", robot);
+            apistring.Add("toolname", toolname);
+            apistring.Add("targetname", targetname);
+            Command command = new Command();
+            command.Add("tasktype", "binpicking");
+            command.Add("taskparameters", apistring);
+
+            string message = command.GetString();
+
+            Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
+        }
+
+        public void Grab(string toolname, string targetname, long timeOutMilliseconds = 60000)
+        {
+
+            string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
+
+            Command apistring = new Command();
+            apistring.Add("controllerip", this.controllerip);
+            apistring.Add("controllerport", this.controllerport);
+            apistring.Add("command", "Grab");
+            apistring.Add("toolname", toolname);
+            apistring.Add("targetname", targetname);
+            Command command = new Command();
+            command.Add("tasktype", "binpicking");
+            command.Add("taskparameters", apistring);
+
+            string message = command.GetString();
+
+            Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
         }
 
         private Dictionary<string, object> Execute(long timeOutMilliseconds)
@@ -198,7 +242,7 @@ namespace Mujin
                 result = this.GetResult();
             } while (result == null);
 
-            System.Threading.Thread.Sleep(10);
+            System.Threading.Thread.Sleep(100); //  very important sleep otherwise final results will be wrong
             result = this.GetResult();
             Dictionary<string, object> resultdict = (Dictionary<string, object>)result;
             if (resultdict.ContainsKey("errormessage"))
