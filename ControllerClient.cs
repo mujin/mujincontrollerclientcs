@@ -1,4 +1,4 @@
-﻿// -*- coding: utf-8 -*-
+// -*- coding: utf-8 -*-
 // Copyright (C) 2013 MUJIN Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,6 +38,7 @@ namespace Mujin
         private CookieContainer cookies;
         private string csrftoken;
 
+        public const string version = "0.1.0";
         private const string DEFAULT_URI = "http://mujin.co.jp:9007/";
         private const string DEFAULT_API_PATH = "api/v1/";
         private const string DEFULAT_LOGIN_PATH = "login/";

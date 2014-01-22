@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("mujincontrollerclientcs")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("jsk")]
+[assembly: AssemblyCompany("mujin")]
 [assembly: AssemblyProduct("mujincontrollerclientcs")]
-[assembly: AssemblyCopyright("Copyright © jsk 2013")]
+[assembly: AssemblyCopyright("Copyright © mujin")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
