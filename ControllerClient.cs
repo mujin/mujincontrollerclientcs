@@ -23,6 +23,7 @@ using System.Net;
 using System.IO;
 using fastJSON;
 using System.Diagnostics;
+using System.Xml;
 
 namespace Mujin
 {
@@ -75,10 +76,31 @@ namespace Mujin
                 case HttpMethod.GET:
                     {
                         if (!String.IsNullOrEmpty(message)) throw new ClientException("Cannot add message body to GET method.");
-                        return this.GetJsonMessageGet(apiParameters);
+                        return this.GetMessageGet(apiParameters);
                     }
-                case HttpMethod.POST: return this.GetJsonMessagePostOrPut(apiParameters, message, HttpMethod.POST);
-                case HttpMethod.PUT: return this.GetJsonMessagePostOrPut(apiParameters, message, HttpMethod.PUT);
+                case HttpMethod.POST: return this.GetMessagePostOrPut(apiParameters, message, HttpMethod.POST);
+                case HttpMethod.PUT: return this.GetMessagePostOrPut(apiParameters, message, HttpMethod.PUT);
+                default: return null;
+            }
+        }
+
+        public Dictionary<string, object> GetXMLMessage(HttpMethod method, string apiParameters, string message = null)
+        {
+            switch (method)
+            {
+                case HttpMethod.GET:
+                    {
+                        if (!String.IsNullOrEmpty(message)) throw new ClientException("Cannot add message body to GET method.");
+                        return this.GetMessageGet(apiParameters, "application/xml; charset=UTF-8");
+                    }
+                case HttpMethod.POST:
+                    {
+                        return this.GetMessagePostOrPut(apiParameters, message, HttpMethod.POST, "application/xml; charset=UTF-8");
+                    }
+                case HttpMethod.PUT:
+                    {
+                        return this.GetMessagePostOrPut(apiParameters, message, HttpMethod.PUT, "application/xml; charset=UTF-8");
+                    }
                 default: return null;
             }
         }
@@ -181,7 +203,8 @@ namespace Mujin
         private void TryLogin()
         {
             HttpWebRequest webRequestAuth = CreateWebRequest(baseUri + DEFULAT_LOGIN_PATH, HttpMethod.GET);
-            HttpWebResponse responseAuth = this.GetResponse(webRequestAuth, new List<HttpStatusCode>() { HttpStatusCode.OK });
+            webRequestAuth.AllowAutoRedirect = false;
+            HttpWebResponse responseAuth = this.GetResponse(webRequestAuth, new List<HttpStatusCode>() { HttpStatusCode.OK, HttpStatusCode.Redirect });
 
             Cookie item = responseAuth.Cookies["csrftoken"];
             if (item == null)
@@ -224,9 +247,13 @@ namespace Mujin
             responseApi.Close();
         }
 
-        private Dictionary<string, object> GetJsonMessageGet(string apiParameters)
+        private Dictionary<string, object> GetMessageGet(string apiParameters, string contentType=null)
         {
             HttpWebRequest request = CreateWebRequest(baseApiUri + apiParameters, HttpMethod.GET);
+            if (contentType != null)
+            {
+                request.ContentType = contentType;
+            }
             HttpWebResponse response = null;
 
             try
@@ -252,9 +279,13 @@ namespace Mujin
             return jsonMessage;
         }
 
-        private Dictionary<string, object> GetJsonMessagePostOrPut(string apiParameters, string message, HttpMethod method)
+        private Dictionary<string, object> GetMessagePostOrPut(string apiParameters, string message, HttpMethod method, string contentType=null)
         {
             HttpWebRequest postWebRequest = CreateWebRequest(baseApiUri + apiParameters, method);
+            if (contentType != null)
+            {
+                postWebRequest.ContentType = contentType;
+            }
             StreamWriter writer = new StreamWriter(postWebRequest.GetRequestStream());
             writer.Write(message);
             writer.Close();
@@ -262,12 +293,35 @@ namespace Mujin
             HttpWebResponse postWebResponse = (HttpWebResponse)postWebRequest.GetResponse();
             StreamReader reader = new StreamReader(postWebResponse.GetResponseStream());
             string responsestring = reader.ReadToEnd();
-            Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+            Dictionary<string, object> messagedata;
+            if (contentType != null && contentType.IndexOf("xml") >= 0)
+            {
+                System.Xml.Linq.XDocument doc = System.Xml.Linq.XDocument.Parse(responsestring);
+                messagedata = new Dictionary<string, object>();
+
+                // TEMPORARY until can figure out how to make it consistent with JSON
+                foreach (System.Xml.Linq.XElement element in doc.Descendants().Where(p => p.HasElements == false))
+                {
+                    int keyInt = 0;
+                    string keyName = element.Name.LocalName;
+
+                    while (messagedata.ContainsKey(keyName))
+                    {
+                        keyName = element.Name.LocalName + "_" + keyInt++;
+                    }
+
+                    messagedata.Add(keyName, element.Value);
+                }
+            }
+            else
+            {
+                messagedata = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+            }
 
             reader.Close();
             postWebResponse.Close();
 
-            return jsonMessage;
+            return messagedata;
         }
     }
 }

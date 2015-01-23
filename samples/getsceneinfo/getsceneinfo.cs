@@ -13,13 +13,19 @@ namespace getsceneinfo
     {
         static void Main(string[] args)
         {
-            if (false)
+            if (true)
             {
-                ControllerClient controllerClient2 = new ControllerClient("testuser", "mytemppass", "http://controller0");
+                ControllerClient controllerClient2 = new ControllerClient("testuser", "mytestpass", "http://controller13");
 
                 //controllerClient.Initialize("mujin:/irex2013/irex2013.WPJ", "mujincollada", "wincaps", "mujin:/irex2013.mujin.dae");
 
-                SceneResource scene2 = controllerClient2.GetScene("test.mujin.dae");
+                //SceneResource scene2 = controllerClient2.GetScene("test.mujin.dae");
+
+                // JSON creation
+                //Dictionary<string, object> jsonMessage = controllerClient2.GetJsonMessage(HttpMethod.POST, "scene/?format=json", "{\"name\":\"newname\", \"reference_uri\":\"mujin:/plasticnut-center.mujin.dae\"}");
+
+                // XML creation
+                Dictionary<string, object> xmlMessage = controllerClient2.GetXMLMessage(HttpMethod.POST, "scene/?format=xml", "<request><name>newname3</name><reference_uri>mujin:/plasticnut-center.mujin.dae</reference_uri></request>");
             }
 
             // Default XML path:
