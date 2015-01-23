@@ -13,9 +13,9 @@ namespace getsceneinfo
     {
         static void Main(string[] args)
         {
-            if (true)
+            if (false)
             {
-                ControllerClient controllerClient2 = new ControllerClient("testuser", "AuWaGluonim2", "http://192.168.13.101");
+                ControllerClient controllerClient2 = new ControllerClient("testuser", "mytemppass", "http://192.168.13.101");
 
                 //controllerClient.Initialize("mujin:/irex2013/irex2013.WPJ", "mujincollada", "wincaps", "mujin:/irex2013.mujin.dae");
 
