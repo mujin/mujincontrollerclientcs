@@ -13,6 +13,15 @@ namespace getsceneinfo
     {
         static void Main(string[] args)
         {
+            if (true)
+            {
+                ControllerClient controllerClient2 = new ControllerClient("testuser", "AuWaGluonim2", "http://192.168.13.101");
+
+                //controllerClient.Initialize("mujin:/irex2013/irex2013.WPJ", "mujincollada", "wincaps", "mujin:/irex2013.mujin.dae");
+
+                SceneResource scene2 = controllerClient2.GetScene("toyota_welding.mujin.dae");
+            }
+
             // Default XML path:
             // string xmlFilepath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "..\\..\\samples\\getsceneinfo\\config\\connection.xml";
 
@@ -68,7 +77,7 @@ namespace getsceneinfo
             */
 
             // Test4: PickAndMove
-            task.PickAndMove("container3", "camera3", "1Base", GoalType.translationdirection5d, new List<double>() { 1900, 240, 700, 0, 0, 1 }, 0.2);
+            //task.PickAndMove("container3", "camera3", "1Base", GoalType.translationdirection5d, new List<double>() { 1900, 240, 700, 0, 0, 1 }, 0.2);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace APIUserAcceptanceTest
             // For transform6d, X[mm], Y[mm], Z[mm], RX[deg], RY[deg], RZ[deg]
             List<double> goalpos = new List<double>() { 1000.5, 800, 1050, 1, -89, -89 };
 
-            task.PickAndMove("container1", "camera1", "1Base", GoalType.transform6d, goalpos, 0.2, 60000);
+            //task.PickAndMove("container1", "camera1", "1Base", GoalType.transform6d, goalpos, 0.2, 60000);
         }
 
         // Move towards a work and pick it - translatedirection5d
@@ -27,7 +27,7 @@ namespace APIUserAcceptanceTest
             // For translationdirection5d, X[mm], Y[mm], Z[mm], DX[mm], DY[mm], DZ[mm]
             List<double> goalpos = new List<double>() { 300, 900, 500, 0, 0, 0 };
 
-            task.PickAndMove("container1", "camera1", "1Base", GoalType.translationdirection5d, goalpos, 0.2, 60000);
+            //task.PickAndMove("container1", "camera1", "1Base", GoalType.translationdirection5d, goalpos, 0.2, 60000);
         }
 
         // Move towards a work and pick it - tool name
@@ -38,7 +38,7 @@ namespace APIUserAcceptanceTest
             // For transform6d, X[mm], Y[mm], Z[mm], RX[deg], RY[deg], RZ[deg]
             List<double> goalpos = new List<double>() { 300, 900, 500, 0, 0, 0 };
 
-            task.PickAndMove("container1", "camera1", "0", GoalType.transform6d, goalpos, 0.2, 60000);
+            //task.PickAndMove("container1", "camera1", "0", GoalType.transform6d, goalpos, 0.2, 60000);
         }
 
         // Move towards a work and pick it - multiple goals
@@ -50,7 +50,7 @@ namespace APIUserAcceptanceTest
             List<double> goalpos = new List<double>() { 300, 900, 500, 0, 0, 0,
                                                         150, 850, 500, 0, 0, 0 };
 
-            task.PickAndMove("container1", "camera1", "1Base", GoalType.transform6d, goalpos, 0.2, 60000);
+            //task.PickAndMove("container1", "camera1", "1Base", GoalType.transform6d, goalpos, 0.2, 60000);
         }
 
         // Move towards a work and pick it - Invalid box name
@@ -61,7 +61,7 @@ namespace APIUserAcceptanceTest
             // For transform6d, X[mm], Y[mm], Z[mm], RX[deg], RY[deg], RZ[deg]
             List<double> goalpos = new List<double>() { 300, 900, 500, 0, 0, 0 };
 
-            task.PickAndMove("hogehogebox", "camera1", "1Base", GoalType.transform6d, goalpos, 0.2, 60000);
+            //task.PickAndMove("hogehogebox", "camera1", "1Base", GoalType.transform6d, goalpos, 0.2, 60000);
         }
 
         // Move towards a work and pick it - Invalid sensor name
@@ -72,7 +72,7 @@ namespace APIUserAcceptanceTest
             // For transform6d, X[mm], Y[mm], Z[mm], RX[deg], RY[deg], RZ[deg]
             List<double> goalpos = new List<double>() { 300, 900, 500, 0, 0, 0 };
 
-            task.PickAndMove("container1", "foobarcamera", "1Base", GoalType.transform6d, goalpos, 0.2, 60000);
+            //task.PickAndMove("container1", "foobarcamera", "1Base", GoalType.transform6d, goalpos, 0.2, 60000);
         }
 
         // Move towards a work and pick it - Invalid tool name
@@ -83,7 +83,7 @@ namespace APIUserAcceptanceTest
             // For transform6d, X[mm], Y[mm], Z[mm], RX[deg], RY[deg], RZ[deg]
             List<double> goalpos = new List<double>() { 300, 900, 500, 0, 0, 0 };
 
-            task.PickAndMove("container1", "camera1", "hogehoge", GoalType.transform6d, goalpos, 0.2, 60000);
+            //task.PickAndMove("container1", "camera1", "hogehoge", GoalType.transform6d, goalpos, 0.2, 60000);
         }
 
         // Move towards a work and pick it - Invalid speed
@@ -94,7 +94,7 @@ namespace APIUserAcceptanceTest
             // For transform6d, X[mm], Y[mm], Z[mm], RX[deg], RY[deg], RZ[deg]
             List<double> goalpos = new List<double>() { 300, 900, 500, 0, 0, 0 };
 
-            task.PickAndMove("container1", "camera1", "1Base", GoalType.transform6d, goalpos, 1.2, 60000);
+            //task.PickAndMove("container1", "camera1", "1Base", GoalType.transform6d, goalpos, 1.2, 60000);
         }
 
         // Move towards a work and pick it - Time out
@@ -107,7 +107,7 @@ namespace APIUserAcceptanceTest
 
             try
             {
-                task.PickAndMove("container1", "camera1", "1Base", GoalType.transform6d, goalpos, 0.2, 100);
+                //task.PickAndMove("container1", "camera1", "1Base", GoalType.transform6d, goalpos, 0.2, 100);
             }
             catch (ClientException ex)
             {

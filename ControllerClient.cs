@@ -39,7 +39,7 @@ namespace Mujin
         private string csrftoken;
 
         public const string version = "0.1.0";
-        private const string DEFAULT_URI = "http://mujin.co.jp:9007/";
+        private const string DEFAULT_URI = "http://controllerXX/";
         private const string DEFAULT_API_PATH = "api/v1/";
         private const string DEFULAT_LOGIN_PATH = "login/";
 
@@ -51,10 +51,10 @@ namespace Mujin
             this.baseApiUri = this.baseUri + DEFAULT_API_PATH;
 
             string tempuri = this.baseUri.EndsWith(":8000/") ? this.RemovePortNumberString() : this.baseUri;
-            baseWebDavUri = string.Format("{0}u/{1}/", tempuri, username);
+            this.baseWebDavUri = string.Format("{0}u/{1}/", tempuri, username);
 
-            credentials = new CredentialCache();
-            credentials.Add(new Uri(this.baseUri), "Basic", new NetworkCredential(this.username, this.password));
+            this.credentials = new CredentialCache();
+            this.credentials.Add(new Uri(this.baseUri), "Basic", new NetworkCredential(this.username, this.password));
 
             cookies = new CookieContainer();
 
@@ -92,8 +92,7 @@ namespace Mujin
             command.Add("uri", uri);
             string messageBody = command.GetString();
 
-            Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.POST,
-                "scene/?format=json&fields=name,pk,uri&overwrite=1", messageBody);
+            Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.POST, "scene/?format=json&fields=name,pk,uri&overwrite=1", messageBody);
 
             string primaryKey = (string)jsonMessage["pk"];
         }
@@ -114,11 +113,11 @@ namespace Mujin
             httpWebRequest.Method = method.ToString();
             httpWebRequest.Credentials = credentials;
             httpWebRequest.ContentType = "application/json; charset=UTF-8";
-            httpWebRequest.CookieContainer = cookies;
+            httpWebRequest.CookieContainer = this.cookies;
             httpWebRequest.PreAuthenticate = true;
             httpWebRequest.UserAgent = "controllerclientcs";
 
-            this.AddAuthorizationHeader(httpWebRequest);
+            this.AddAuthorizationHeader(httpWebRequest); // messes up logging
             this.AddCsrfTokenHeader(httpWebRequest);
 
             return httpWebRequest;
@@ -149,14 +148,19 @@ namespace Mujin
             }
             catch (WebException ex)
             {
-                if (ex.Status.Equals(WebExceptionStatus.ProtocolError) && ex.ToString().Contains("401")) 
+                if (ex.Status.Equals(WebExceptionStatus.ProtocolError) && ex.ToString().Contains("401"))
+                {
                     throw new ClientException("401 error. Confirm username and password.");
-
+                }
                 if (ex.Status.Equals(WebExceptionStatus.NameResolutionFailure))
+                {
                     throw new ClientException("Name resolution error. Confirm Mujin Controller server address.");
-
+                }
                 if (ex.Status.Equals(WebExceptionStatus.ConnectFailure))
+                {
                     throw new ClientException("Cannot connect to server. Confirm Mujin Controller port number, etc.");
+                }
+                throw ex;
             }
 
             if (!expectedStatusCodes.Contains(response.StatusCode))
@@ -180,7 +184,20 @@ namespace Mujin
             HttpWebResponse responseAuth = this.GetResponse(webRequestAuth, new List<HttpStatusCode>() { HttpStatusCode.OK });
 
             Cookie item = responseAuth.Cookies["csrftoken"];
-            if (item != null) csrftoken = item.Value;
+            if (item == null)
+            {
+                HttpWebRequest webRequestAuth2 = CreateWebRequest(baseApiUri, HttpMethod.GET);
+                HttpWebResponse responseAuth2 = this.GetResponse(webRequestAuth2, new List<HttpStatusCode>() { HttpStatusCode.OK });
+
+                item = responseAuth2.Cookies["csrftoken"];
+                responseAuth2.Close();
+            }
+
+            if (item != null)
+            {
+                this.csrftoken = item.Value;
+                //httpWebRequest.Referer = this.baseUri;
+            }
 
             responseAuth.Close();
         }
@@ -192,9 +209,14 @@ namespace Mujin
             webRequest.Referer = this.baseUri + DEFULAT_LOGIN_PATH;
             webRequest.AllowAutoRedirect = false;
 
+            if (this.csrftoken == null)
+            {
+                throw new ClientException("Need csrftoken for login");
+            }
+            
             StreamWriter streamWrite = new StreamWriter(webRequest.GetRequestStream());
-            streamWrite.Write(string.Format("username={0}&password={1}&this_is_the_login_form=1&next=%2F&csrfmiddlewaretoken={2}",
-                username, password, csrftoken));
+            //streamWrite.Write(string.Format("username={0}&password={1}&this_is_the_login_form=1&next=%2F&csrfmiddlewaretoken={2}", username, password, this.csrftoken));
+            streamWrite.Write(string.Format("username={0}&password={1}&this_is_the_login_form=1&next=%2F", username, password));
             streamWrite.Close();
 
             HttpWebResponse responseApi = this.GetResponse(webRequest, new List<HttpStatusCode>() { HttpStatusCode.Found });
@@ -214,7 +236,9 @@ namespace Mujin
             catch (WebException ex)
             {
                 if (ex.Status.Equals(WebExceptionStatus.ProtocolError) && ex.ToString().Contains("500"))
+                {
                     throw new ClientException("Mujin controller error. Possible error reason : (a) invalid scene primary key");
+                }
 
             }
             

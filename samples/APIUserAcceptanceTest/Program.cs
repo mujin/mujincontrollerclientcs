@@ -73,6 +73,8 @@ namespace APIUserAcceptanceTest
                 "1Base",        // toolname
                 Mujin.GoalType.translationdirection5d,  // goaltype
                 goalpos,
+                1,
+                1,
                 0.1);
         }
     }
