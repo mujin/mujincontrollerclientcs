@@ -15,11 +15,11 @@ namespace getsceneinfo
         {
             if (false)
             {
-                ControllerClient controllerClient2 = new ControllerClient("testuser", "mytemppass", "http://192.168.13.101");
+                ControllerClient controllerClient2 = new ControllerClient("testuser", "mytemppass", "http://controller0");
 
                 //controllerClient.Initialize("mujin:/irex2013/irex2013.WPJ", "mujincollada", "wincaps", "mujin:/irex2013.mujin.dae");
 
-                SceneResource scene2 = controllerClient2.GetScene("toyota_welding.mujin.dae");
+                SceneResource scene2 = controllerClient2.GetScene("test.mujin.dae");
             }
 
             // Default XML path:
