@@ -27,7 +27,7 @@ namespace updateobjects
             task.SlaveRequestID = hostname + "_slave0";
 
             // remove objects in the scene whose names have this prefix, optional
-            string prefix = "testobject_";
+            string prefix = "detected_sourcecontainer_";
 
             // list of objects and their poses to be updated in the scene
             List<Dictionary<string, object>> envstate = new List<Dictionary<string, object>>() {
