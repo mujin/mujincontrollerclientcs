@@ -61,35 +61,5 @@ namespace Mujin
             if (!taskType.Equals(taskTypeNew)) throw new ClientException("unsupported task type: " + taskTypeNew);
             return new BinPickingTask(taskPrimaryKeyNew, taskName, controllerip, controllerport, this.controllerClient);
         }
-
-        // private Dictionary<string, object> ExceuteTaskSync(string taskType, Command taskparameters, string slaverequestid = "")
-        // {
-        //     string apiParameters = string.Format("scene/{0}/resultget/?format=json", this.scenePrimaryKey);
-
-        //     Dictionary<string, object> command = new Dictionary<string, object>();
-        //     command["tasktype"] = taskType;
-        //     command["taskparameters"] = taskparameters;
-        //     command["slaverequestid"] = slaverequestid;
-        //     return controllerClient.GetJsonMessage(HttpMethod.GET, apiParameters, command.GetString());
-        // }
-
-        // public void UpdateObjects(string taskType, Dictionary<string, object> envstate, string objectname, string objecturi, string unit = "mm", string slaverequestid = "")
-        // {
-        //     Command taskparameters = new Command();
-        //     taskparameters.Add("command", "UpdateObjects");
-        //     taskparameters.Add("envstate", envstate);
-        //     taskparameters.Add("unit", unit);
-        //     taskparameters.Add("objectname", objectname);
-        //     taskparameters.Add("object_uri", objecturi);
-
-        //     this.ExceuteTaskSync(taskType, taskparameters, slaverequestid);
-        // }
-
-        // public Dictionary<string, object> GetBinpickingState(string taskType, string slaverequestid = "")
-        // {
-        //     Command taskparameters = new Command();
-        //     taskparameters.Add("command", "GetBinpickingState");
-        //     return this.ExceuteTaskSync(taskType, taskparameters, slaverequestid);
-        // }
     }
 }

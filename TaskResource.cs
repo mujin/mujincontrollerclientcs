@@ -270,6 +270,27 @@ namespace Mujin
             return result;
         }
 
+        public void UpdateObjects(string taskType, Dictionary<string, object> envstate, string objectname, string objecturi, string unit = "mm", long timeOutMilliseconds = 60000)
+        {
+            string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
+
+            Dictionary<string, object> taskparameters = new Dictionary<string, object>();
+            taskparameters["command"] = "UpdateObjects";
+            taskparameters["envstate"] = envstate;
+            taskparameters["unit"] = unit;
+            taskparameters["objectname"] = objectname;
+            taskparameters["object_uri"] = objecturi;
+
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["tasktype"] = "binpicking";
+            command["taskparameters"] = taskparameters;
+
+            string message = JSON.Instance.ToJSON(command);
+
+            Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
+        }
+
         private Dictionary<string, object> Execute(long timeOutMilliseconds)
         {
             string apiParameters = string.Format("task/{0}/", this.taskPrimaryKey);
