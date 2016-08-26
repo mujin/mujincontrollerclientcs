@@ -75,7 +75,10 @@ namespace Mujin
             {
                 case HttpMethod.GET:
                     {
-                        if (!String.IsNullOrEmpty(message)) throw new ClientException("Cannot add message body to GET method.");
+                        if (!String.IsNullOrEmpty(message)) {
+                            return this.GetMessagePostOrPut(apiParameters, message, HttpMethod.GET);
+                            // throw new ClientException("Cannot add message body to GET method.");
+                        }
                         return this.GetMessageGet(apiParameters);
                     }
                 case HttpMethod.POST: return this.GetMessagePostOrPut(apiParameters, message, HttpMethod.POST);
@@ -107,12 +110,12 @@ namespace Mujin
 
         public void Initialize(string referenceUri, string sceneType, string referenceSceneType, string uri)
         {
-            Command command = new Command();
-            command.Add("reference_uri", referenceUri);
-            command.Add("scenetype", sceneType);
-            command.Add("reference_scenetype", referenceSceneType);
-            command.Add("uri", uri);
-            string messageBody = command.GetString();
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["reference_uri"] = referenceUri;
+            command["scenetype"] = sceneType;
+            command["reference_scenetype"] = referenceSceneType;
+            command["uri"] = uri;
+            string messageBody = JSON.Instance.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.POST, "scene/?format=json&fields=name,pk,uri&overwrite=1", messageBody);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using fastJSON;
 
 namespace Mujin
 {
@@ -38,15 +39,15 @@ namespace Mujin
         {
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
-            Command apistring = new Command();
-            apistring.Add("controllerip", this.controllerip);
-            apistring.Add("controllerport", this.controllerport);
-            apistring.Add("command", "GetJointValues");
-            Command command = new Command();
-            command.Add("tasktype", "binpicking");
-            command.Add("taskparameters", apistring);
+            Dictionary<string, object> apistring = new Dictionary<string, object>();
+            apistring["controllerip"] = this.controllerip;
+            apistring["controllerport"] = this.controllerport;
+            apistring["command"] = "GetJointValues";
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["tasktype"] = "binpicking";
+            command["taskparameters"] = apistring;
 
-            string message = command.GetString();
+            string message = JSON.Instance.ToJSON(command);
 
             // Update task
             controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
@@ -94,20 +95,20 @@ namespace Mujin
 
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
-            Command apistring = new Command();
-            apistring.Add("controllerip", this.controllerip);
-            apistring.Add("controllerport", this.controllerport);
-            apistring.Add("command", "MoveJoints");
+            Dictionary<string, object> apistring = new Dictionary<string, object>();
+            apistring["controllerip"] = this.controllerip;
+            apistring["controllerport"] = this.controllerport;
+            apistring["command"] = "MoveJoints";
             //apistring.Add("robot",robot);
-            apistring.Add("goaljoints", jointValues);
-            apistring.Add("jointindices", jointIndices);
-            apistring.Add("envclearance", clearance);
-            apistring.Add("speed", speed);
-            Command command = new Command();
-            command.Add("tasktype", "binpicking");
-            command.Add("taskparameters", apistring);
+            apistring["goaljoints"] = jointValues;
+            apistring["jointindices"] = jointIndices;
+            apistring["envclearance"] = clearance;
+            apistring["speed"] = speed;
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["tasktype"] = "binpicking";
+            command["taskparameters"] = apistring;
 
-            string message = command.GetString();
+            string message = JSON.Instance.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -120,19 +121,19 @@ namespace Mujin
 
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
-            Command apistring = new Command();
-            apistring.Add("controllerip", this.controllerip);
-            apistring.Add("controllerport", this.controllerport);
-            apistring.Add("command", "MoveToHandPosition");
-            apistring.Add("toolname", toolname);
-            apistring.Add("goaltype", goalType.ToString());
-            apistring.Add("goals", goals);
-            apistring.Add("speed", speed);
-            Command command = new Command();
-            command.Add("tasktype", "binpicking");
-            command.Add("taskparameters", apistring);
+            Dictionary<string, object> apistring = new Dictionary<string, object>();
+            apistring["controllerip"] = this.controllerip;
+            apistring["controllerport"] = this.controllerport;
+            apistring["command"] = "MoveToHandPosition";
+            apistring["toolname"] = toolname;
+            apistring["goaltype"] = goalType.ToString();
+            apistring["goals"] = goals;
+            apistring["speed"] = speed;
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["tasktype"] = "binpicking";
+            command["taskparameters"] = apistring;
 
-            string message = command.GetString();
+            string message = JSON.Instance.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -143,23 +144,23 @@ namespace Mujin
         {
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
-            Command apistring = new Command();
-            apistring.Add("controllerip", this.controllerip);
-            apistring.Add("controllerport", this.controllerport);
-            apistring.Add("command", "PickAndMove");
-            apistring.Add("boxname", boxname);
-            apistring.Add("sensorname", sensorName);
-            apistring.Add("toolname", toolname);
-            apistring.Add("speed", speed);
-            apistring.Add("goaltype", goaltype.ToString());
-            apistring.Add("goals", goalTranslationDirections);
-            apistring.Add("movetodestination", movetodestination);
-            apistring.Add("deletetarget", deletetarget);
-            Command command = new Command();
-            command.Add("tasktype", "binpicking");
-            command.Add("taskparameters", apistring);
+            Dictionary<string, object> apistring = new Dictionary<string, object>();
+            apistring["controllerip"] = this.controllerip;
+            apistring["controllerport"] = this.controllerport;
+            apistring["command"] = "PickAndMove";
+            apistring["boxname"] = boxname;
+            apistring["sensorname"] = sensorName;
+            apistring["toolname"] = toolname;
+            apistring["speed"] = speed;
+            apistring["goaltype"] = goaltype.ToString();
+            apistring["goals"] = goalTranslationDirections;
+            apistring["movetodestination"] = movetodestination;
+            apistring["deletetarget"] = deletetarget;
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["tasktype"] = "binpicking";
+            command["taskparameters"] = apistring;
 
-            string message = command.GetString();
+            string message = JSON.Instance.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -186,19 +187,19 @@ namespace Mujin
 
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
-            Command apistring = new Command();
-            apistring.Add("controllerip", this.controllerip);
-            apistring.Add("controllerport", this.controllerport);
-            apistring.Add("command", "OpenGripper");
-            apistring.Add("speed", speed); 
-            apistring.Add("robot", robot);
-            apistring.Add("toolname", toolname);
-            apistring.Add("targetname", targetname);
-            Command command = new Command();
-            command.Add("tasktype", "binpicking");
-            command.Add("taskparameters", apistring);
+            Dictionary<string, object> apistring = new Dictionary<string, object>();
+            apistring["controllerip"] = this.controllerip;
+            apistring["controllerport"] = this.controllerport;
+            apistring["command"] = "OpenGripper";
+            apistring["speed"] = speed; 
+            apistring["robot"] = robot;
+            apistring["toolname"] = toolname;
+            apistring["targetname"] = targetname;
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["tasktype"] = "binpicking";
+            command["taskparameters"] = apistring;
 
-            string message = command.GetString();
+            string message = JSON.Instance.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -209,16 +210,16 @@ namespace Mujin
 
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
-            Command apistring = new Command();
-            apistring.Add("controllerip", this.controllerip);
-            apistring.Add("controllerport", this.controllerport);
-            apistring.Add("command", "GetIOVariable");
-            apistring.Add("index", index);
-            Command command = new Command();
-            command.Add("tasktype", "binpicking");
-            command.Add("taskparameters", apistring);
+            Dictionary<string, object> apistring = new Dictionary<string, object>();
+            apistring["controllerip"] = this.controllerip;
+            apistring["controllerport"] = this.controllerport;
+            apistring["command"] = "GetIOVariable";
+            apistring["index"] = index;
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["tasktype"] = "binpicking";
+            command["taskparameters"] = apistring;
 
-            string message = command.GetString();
+            string message = JSON.Instance.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -235,20 +236,38 @@ namespace Mujin
 
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
-            Command apistring = new Command();
-            apistring.Add("controllerip", this.controllerip);
-            apistring.Add("controllerport", this.controllerport);
-            apistring.Add("command", "Grab");
-            apistring.Add("toolname", toolname);
-            apistring.Add("targetname", targetname);
-            Command command = new Command();
-            command.Add("tasktype", "binpicking");
-            command.Add("taskparameters", apistring);
+            Dictionary<string, object> apistring = new Dictionary<string, object>();
+            apistring["controllerip"] = this.controllerip;
+            apistring["controllerport"] = this.controllerport;
+            apistring["command"] = "Grab";
+            apistring["toolname"] = toolname;
+            apistring["targetname"] = targetname;
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["tasktype"] = "binpicking";
+            command["taskparameters"] = apistring;
 
-            string message = command.GetString();
+            string message = JSON.Instance.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
+        }
+
+        public Dictionary<string, object> GetBinpickingState(long timeOutMilliseconds = 60000)
+        {
+            string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
+
+            Dictionary<string, object> taskparameters = new Dictionary<string, object>();
+            taskparameters["command"] = "GetBinpickingState";
+
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["tasktype"] = "binpicking";
+            command["taskparameters"] = taskparameters;
+            
+            string message = JSON.Instance.ToJSON(command);
+
+            Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
+            Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
+            return result;
         }
 
         private Dictionary<string, object> Execute(long timeOutMilliseconds)

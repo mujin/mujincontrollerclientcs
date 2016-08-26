@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using fastJSON;
 
 namespace Mujin
 {
@@ -46,11 +47,11 @@ namespace Mujin
         {
             string apiParameters = string.Format("scene/{0}/task/?format=json&fields=pk", this.scenePrimaryKey);
 
-            Command command = new Command();
-            command.Add("name", taskName);
-            command.Add("tasktype", taskType);
-            command.Add("scenepk", this.scenePrimaryKey);
-            string message = command.GetString();
+            Dictionary<string, object> command = new Dictionary<string, object>();
+            command["name"] = taskName;
+            command["tasktype"] = taskType;
+            command["scenepk"] = this.scenePrimaryKey;
+            string message = JSON.Instance.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.POST, apiParameters, message);
 
@@ -60,5 +61,35 @@ namespace Mujin
             if (!taskType.Equals(taskTypeNew)) throw new ClientException("unsupported task type: " + taskTypeNew);
             return new BinPickingTask(taskPrimaryKeyNew, taskName, controllerip, controllerport, this.controllerClient);
         }
+
+        // private Dictionary<string, object> ExceuteTaskSync(string taskType, Command taskparameters, string slaverequestid = "")
+        // {
+        //     string apiParameters = string.Format("scene/{0}/resultget/?format=json", this.scenePrimaryKey);
+
+        //     Dictionary<string, object> command = new Dictionary<string, object>();
+        //     command["tasktype"] = taskType;
+        //     command["taskparameters"] = taskparameters;
+        //     command["slaverequestid"] = slaverequestid;
+        //     return controllerClient.GetJsonMessage(HttpMethod.GET, apiParameters, command.GetString());
+        // }
+
+        // public void UpdateObjects(string taskType, Dictionary<string, object> envstate, string objectname, string objecturi, string unit = "mm", string slaverequestid = "")
+        // {
+        //     Command taskparameters = new Command();
+        //     taskparameters.Add("command", "UpdateObjects");
+        //     taskparameters.Add("envstate", envstate);
+        //     taskparameters.Add("unit", unit);
+        //     taskparameters.Add("objectname", objectname);
+        //     taskparameters.Add("object_uri", objecturi);
+
+        //     this.ExceuteTaskSync(taskType, taskparameters, slaverequestid);
+        // }
+
+        // public Dictionary<string, object> GetBinpickingState(string taskType, string slaverequestid = "")
+        // {
+        //     Command taskparameters = new Command();
+        //     taskparameters.Add("command", "GetBinpickingState");
+        //     return this.ExceuteTaskSync(taskType, taskparameters, slaverequestid);
+        // }
     }
 }
