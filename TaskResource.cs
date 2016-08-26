@@ -25,6 +25,7 @@ namespace Mujin
         private string controllerip;
         private int controllerport;
         private ControllerClient controllerClient;
+        private string slaverequestid;
 
         public BinPickingTask(string taskPrimaryKey, string taskName, string controllerip, int controllerport, ControllerClient controllerClient)
         {
@@ -33,6 +34,11 @@ namespace Mujin
             this.controllerip = controllerip;
             this.controllerport = controllerport;
             this.controllerClient = controllerClient;
+        }
+
+        public string SlaveRequestID {
+            get { return this.slaverequestid; }
+            set { this.slaverequestid = value; }
         }
 
         public RobotState GetJointValues(long timeOutMilliseconds = 30000)
@@ -262,6 +268,7 @@ namespace Mujin
             Dictionary<string, object> command = new Dictionary<string, object>();
             command["tasktype"] = "binpicking";
             command["taskparameters"] = taskparameters;
+            command["slaverequestid"] = slaverequestid;
             
             string message = JSON.Instance.ToJSON(command);
 
@@ -270,7 +277,7 @@ namespace Mujin
             return result;
         }
 
-        public void UpdateObjects(string taskType, Dictionary<string, object> envstate, string objectname, string objecturi, string unit = "mm", long timeOutMilliseconds = 60000)
+        public void UpdateObjects(List<Dictionary<string, object>> envstate, string objectname = "", string objecturi = "", string unit = "mm", long timeOutMilliseconds = 60000)
         {
             string apiParameters = string.Format("task/{0}/?format=json&fields=pk", this.taskPrimaryKey);
 
@@ -284,6 +291,7 @@ namespace Mujin
             Dictionary<string, object> command = new Dictionary<string, object>();
             command["tasktype"] = "binpicking";
             command["taskparameters"] = taskparameters;
+            command["slaverequestid"] = slaverequestid;
 
             string message = JSON.Instance.ToJSON(command);
 

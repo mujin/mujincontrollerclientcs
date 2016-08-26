@@ -17,7 +17,7 @@ namespace Mujin
             this.controllerClient = controllerClient;
         }
 
-        public Task GetOrCreateTaskFromName(string taskName, string taskType, string controllerip, int controllerport)
+        public Task GetOrCreateTaskFromName(string taskName, string taskType, string controllerip = "", int controllerport = 0)
         {
             return this.GetTaskFromName(taskName, taskType, controllerip, controllerport)
                 ?? this.CreateTaskFromName(taskName, taskType, controllerip, controllerport);
