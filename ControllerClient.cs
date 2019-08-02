@@ -112,7 +112,7 @@ namespace Mujin
                 url += String.Format("fields={0}", apiParams);
             }
 
-            Dictionary<string, object> response = GetJsonMessage(HttpMethod.POST, url, JSON.Instance.ToJSON(taskdata));
+            Dictionary<string, object> response = GetJsonMessage(HttpMethod.POST, url, JSON.ToJSON(taskdata));
             return response;
         }
 
@@ -128,7 +128,7 @@ namespace Mujin
             taskdata.Add("scenepk", scenePrimaryKey);
             taskdata.Add("target_pk", taskpk);
             taskdata.Add("resource_type", "task");
-            Dictionary<string, object> response = GetJsonMessage(HttpMethod.POST, "job/", JSON.Instance.ToJSON(taskdata));
+            Dictionary<string, object> response = GetJsonMessage(HttpMethod.POST, "job/", JSON.ToJSON(taskdata));
             return response;
         }
 
@@ -151,7 +151,7 @@ namespace Mujin
 
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string responsestring = reader.ReadToEnd();
-            Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+            Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Parse(responsestring);
 
             reader.Close();
             response.Close();
@@ -205,7 +205,7 @@ namespace Mujin
             command["scenetype"] = sceneType;
             command["reference_scenetype"] = referenceSceneType;
             command["uri"] = uri;
-            string messageBody = JSON.Instance.ToJSON(command);
+            string messageBody = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.POST, "scene/?format=json&fields=name,pk,uri&overwrite=1", messageBody);
 
@@ -377,7 +377,7 @@ namespace Mujin
             
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string responsestring = reader.ReadToEnd();
-            Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+            Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Parse(responsestring);
 
             reader.Close();
             response.Close();
@@ -427,7 +427,7 @@ namespace Mujin
             }
             else
             {
-                messagedata = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+                messagedata = (Dictionary<string, object>)JSON.Parse(responsestring);
             }
 
             reader.Close();

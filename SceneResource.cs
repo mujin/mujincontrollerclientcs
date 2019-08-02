@@ -51,7 +51,7 @@ namespace Mujin
             command["name"] = taskName;
             command["tasktype"] = taskType;
             command["scenepk"] = this.scenePrimaryKey;
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.POST, apiParameters, message);
 

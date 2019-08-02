@@ -53,7 +53,7 @@ namespace Mujin
             command["tasktype"] = "binpicking";
             command["taskparameters"] = apistring;
 
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             // Update task
             controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
@@ -114,7 +114,7 @@ namespace Mujin
             command["tasktype"] = "binpicking";
             command["taskparameters"] = apistring;
 
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -139,7 +139,7 @@ namespace Mujin
             command["tasktype"] = "binpicking";
             command["taskparameters"] = apistring;
 
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -166,7 +166,7 @@ namespace Mujin
             command["tasktype"] = "binpicking";
             command["taskparameters"] = apistring;
 
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -205,7 +205,7 @@ namespace Mujin
             command["tasktype"] = "binpicking";
             command["taskparameters"] = apistring;
 
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -225,7 +225,7 @@ namespace Mujin
             command["tasktype"] = "binpicking";
             command["taskparameters"] = apistring;
 
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -252,7 +252,7 @@ namespace Mujin
             command["tasktype"] = "binpicking";
             command["taskparameters"] = apistring;
 
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -270,7 +270,7 @@ namespace Mujin
             command["taskparameters"] = taskparameters;
             command["slaverequestid"] = slaverequestid;
             
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);
@@ -293,7 +293,7 @@ namespace Mujin
             command["taskparameters"] = taskparameters;
             command["slaverequestid"] = slaverequestid;
 
-            string message = JSON.Instance.ToJSON(command);
+            string message = JSON.ToJSON(command);
 
             Dictionary<string, object> jsonMessage = controllerClient.GetJsonMessage(HttpMethod.PUT, apiParameters, message);
             Dictionary<string, object> result = this.Execute(timeOutMilliseconds);

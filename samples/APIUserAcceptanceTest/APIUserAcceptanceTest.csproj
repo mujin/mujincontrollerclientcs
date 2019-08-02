@@ -74,12 +74,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\fastJSON\fastJSON.csproj">
-      <Project>{207E91B1-C9F8-4913-88E1-3549EF5F3273}</Project>
-      <Name>fastJSON</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\mujincontrollerclientcs.csproj">
-      <Project>{80DB7B1A-28F7-4213-8BC6-F5EC447C26EA}</Project>
+      <Project>{8808c493-4c6c-43e5-8e04-34e6e1d05e5c}</Project>
       <Name>mujincontrollerclientcs</Name>
     </ProjectReference>
   </ItemGroup>
