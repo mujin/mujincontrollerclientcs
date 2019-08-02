@@ -44,6 +44,7 @@ namespace Mujin
         private const string DEFAULT_API_PATH = "api/v1/";
         private const string DEFULAT_LOGIN_PATH = "login/";
 
+
         public ControllerClient(string username, string password, string baseUri = null)
         {
             this.username = username;
@@ -62,11 +63,100 @@ namespace Mujin
             this.Login();
         }
 
+        public string GetCurrentSceneURI()
+        {
+            Dictionary<string, object> jsonMessage = this.Get("config/");
+            return (string)jsonMessage["sceneuri"];
+        }
+
         public SceneResource GetScene(string scenePrimaryKey)
         {
             string apiParameters = string.Format("scene/{0}/?format=json&fields=pk", scenePrimaryKey);
             Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.GET, apiParameters);
             return new SceneResource(scenePrimaryKey, this);
+        }
+
+        public Dictionary<string, object> GetJobs()
+        {
+            string apiParameters = string.Format("job/?limit=0");
+            return this.GetJsonMessage(HttpMethod.GET, apiParameters);
+        }
+
+
+        public Dictionary<string, object> GetJob(string jobPK)
+        {
+            string apiParameters = string.Format("job/{0}/?limit=0", jobPK);
+            return this.GetJsonMessage(HttpMethod.GET, apiParameters);
+        }
+
+        public Dictionary<string, object> GetSceneTasks(string scenePrimaryKey)
+        {
+            string apiParameters = string.Format("scene/{0}/task/?format=json", scenePrimaryKey);
+            Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.GET, apiParameters);
+            return jsonMessage;
+        }
+
+        public Dictionary<string, object> GetSceneTask(string scenePrimaryKey, string taskPK)
+        {
+            string apiParameters = string.Format("scene/{0}/task/{1}?format=json", scenePrimaryKey, taskPK);
+            Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.GET, apiParameters);
+            return jsonMessage;
+        }
+        public Dictionary<string, object> CreateSceneTask(string scenePrimaryKey, Dictionary<string, object> taskdata, Dictionary<string, string> fields = null, bool usewebapi = true)
+        {
+            string apiParams = "";
+            string url = String.Format("scene/{0}/task/", scenePrimaryKey);
+            if (fields != null)
+            {
+                apiParams = StringfyAPIParams(fields);
+                url += String.Format("fields={0}", apiParams);
+            }
+
+            Dictionary<string, object> response = GetJsonMessage(HttpMethod.POST, url, JSON.Instance.ToJSON(taskdata));
+            return response;
+        }
+
+        public void DeleteSceneTask(string scenePrimaryKey, string taskPK)
+        {
+            string apiParameters = String.Format("scene/{0}/task/{1}/", scenePrimaryKey, taskPK);
+            this.Delete(apiParameters);
+        }
+
+        public Dictionary<string, object> RunScenetaskAsync(string scenePrimaryKey, string taskpk, Dictionary<string, object> fields = null, bool usewebapi = true)
+        {
+            Dictionary<string, object> taskdata = new Dictionary<string, object>();
+            taskdata.Add("scenepk", scenePrimaryKey);
+            taskdata.Add("target_pk", taskpk);
+            taskdata.Add("resource_type", "task");
+            Dictionary<string, object> response = GetJsonMessage(HttpMethod.POST, "job/", JSON.Instance.ToJSON(taskdata));
+            return response;
+        }
+
+        public Dictionary<string, object> Get(string path, Dictionary<string, object> headers=null)
+        {
+            HttpWebRequest request = CreateWebRequest(baseUri + path, HttpMethod.GET);
+            HttpWebResponse response = null;
+
+            try
+            {
+                response = (HttpWebResponse)request.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status.Equals(WebExceptionStatus.ProtocolError) && ex.ToString().Contains("500"))
+                {
+                    throw new ClientException("Mujin controller error. Possible error reason : (a) invalid scene primary key");
+                }
+            }
+
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            string responsestring = reader.ReadToEnd();
+            Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Instance.Parse(responsestring);
+
+            reader.Close();
+            response.Close();
+
+            return jsonMessage;
         }
 
         public Dictionary<string, object> GetJsonMessage(HttpMethod method, string apiParameters, string message = null)
@@ -122,6 +212,19 @@ namespace Mujin
             string primaryKey = (string)jsonMessage["pk"];
         }
 
+        private string StringfyAPIParams(Dictionary<string, string> apiParams)
+        {
+            string res = "";
+            foreach(KeyValuePair<string, string> entry in apiParams)
+            {
+                if(!String.IsNullOrEmpty(res))
+                {
+                    res += "&";
+                }
+                res += String.Format("{0}={1}", entry.Key, entry.Value);
+            }
+            return res;
+        }
         private string EnsureLastSlash(string uri)
         {
             return uri.EndsWith("/") ? uri : uri += "/";
@@ -245,7 +348,7 @@ namespace Mujin
             streamWrite.Write(string.Format("username={0}&password={1}&this_is_the_login_form=1&next=%2F", username, password));
             streamWrite.Close();
 
-            HttpWebResponse responseApi = this.GetResponse(webRequest, new List<HttpStatusCode>() { HttpStatusCode.Found });
+            HttpWebResponse responseApi = this.GetResponse(webRequest, new List<HttpStatusCode>() { HttpStatusCode.Found, HttpStatusCode.OK });
 
             responseApi.Close();
         }
@@ -282,6 +385,12 @@ namespace Mujin
             return jsonMessage;
         }
 
+        private HttpStatusCode Delete(string apiParameters)
+        {
+            HttpWebRequest deleteRequest = CreateWebRequest(this.baseApiUri + apiParameters, HttpMethod.DELETE);
+            HttpWebResponse response = (HttpWebResponse)deleteRequest.GetResponse();
+            return response.StatusCode;
+        }
         private Dictionary<string, object> GetMessagePostOrPut(string apiParameters, string message, HttpMethod method, string contentType=null)
         {
             HttpWebRequest postWebRequest = CreateWebRequest(baseApiUri + apiParameters, method);

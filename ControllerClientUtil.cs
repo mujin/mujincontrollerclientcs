@@ -6,7 +6,7 @@ using fastJSON;
 
 namespace Mujin
 {
-    public enum HttpMethod { GET, POST, PUT }
+    public enum HttpMethod { GET, POST, PUT, DELETE }
     public enum GoalType { transform6d, translationdirection5d }
 
     public class ClientValidator
