@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mujincontrollerclientcs", "mujincontrollerclientcs.csproj", "{80DB7B1A-28F7-4213-8BC6-F5EC447C26EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "getsceneinfo", "samples\getsceneinfo\getsceneinfo.csproj", "{4950FF18-420A-47A4-88DC-AEAA3B942657}"
@@ -18,10 +20,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIUserAcceptanceTest", "samples\APIUserAcceptanceTest\APIUserAcceptanceTest.csproj", "{4257175C-4829-4AC8-8C51-B1C278F9E1D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegistrationBackup", "samples\registrationbackupexample\RegistrationBackup\RegistrationBackup.csproj", "{26519454-4A9C-4831-A678-D6E7DF69433A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{80DB7B1A-28F7-4213-8BC6-F5EC447C26EA} = {80DB7B1A-28F7-4213-8BC6-F5EC447C26EA}
+		{207E91B1-C9F8-4913-88E1-3549EF5F3273} = {207E91B1-C9F8-4913-88E1-3549EF5F3273}
+	EndProjectSection
+EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = mujincontrollerclientcs.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -99,8 +104,30 @@ Global
 		{4257175C-4829-4AC8-8C51-B1C278F9E1D1}.Release|x64.Build.0 = Release|x64
 		{4257175C-4829-4AC8-8C51-B1C278F9E1D1}.Release|x86.ActiveCfg = Release|x86
 		{4257175C-4829-4AC8-8C51-B1C278F9E1D1}.Release|x86.Build.0 = Release|x86
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Debug|x64.Build.0 = Debug|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Debug|x86.Build.0 = Debug|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Release|x64.ActiveCfg = Release|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Release|x64.Build.0 = Release|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Release|x86.ActiveCfg = Release|Any CPU
+		{26519454-4A9C-4831-A678-D6E7DF69433A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {118A3CE4-0958-41A2-A7D2-6CCB1EDFF532}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = mujincontrollerclientcs.vsmdi
 	EndGlobalSection
 EndGlobal
