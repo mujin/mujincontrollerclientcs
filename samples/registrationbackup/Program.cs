@@ -239,7 +239,7 @@ namespace registrationbackup
                     }
 
                     // wait a bit more
-                    Thread.Sleep(50);
+                    Thread.Sleep(200);
                     continue;
                 }
 
@@ -296,7 +296,7 @@ namespace registrationbackup
                     throw new Exception("Timed out waiting for task result");
                 }
 
-                Thread.Sleep(50);
+                Thread.Sleep(200);
             }
         }
     }

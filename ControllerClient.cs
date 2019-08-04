@@ -33,10 +33,7 @@ namespace Mujin
         private string password;
         private string baseUri;
         private string baseApiUri;
-        private string baseWebDavUri;
 
-        private CredentialCache credentials;
-        private CookieContainer cookies;
         private string csrftoken;
 
         public const string version = "0.1.0";
@@ -50,16 +47,7 @@ namespace Mujin
             this.password = password;
             this.baseUri = (baseUri == null) ? DEFAULT_URI : this.EnsureLastSlash(baseUri);
             this.baseApiUri = this.baseUri + DEFAULT_API_PATH;
-
-            string tempuri = this.baseUri.EndsWith(":8000/") ? this.RemovePortNumberString() : this.baseUri;
-            this.baseWebDavUri = string.Format("{0}u/{1}/", tempuri, username);
-
-            this.credentials = new CredentialCache();
-            this.credentials.Add(new Uri(this.baseUri), "Basic", new NetworkCredential(this.username, this.password));
-
             this.csrftoken = "csrftoken";
-            this.cookies = new CookieContainer();
-            this.cookies.Add(new Uri(this.baseUri), new Cookie("csrftoken", this.csrftoken, "/"));
         }
 
         public string GetCurrentSceneURI()
@@ -106,18 +94,18 @@ namespace Mujin
 
         public Dictionary<string, object> GetSceneTask(string scenePrimaryKey, string taskPK)
         {
-            string apiParameters = string.Format("scene/{0}/task/{1}?format=json", scenePrimaryKey, taskPK);
+            string apiParameters = string.Format("scene/{0}/task/{1}/?format=json", scenePrimaryKey, taskPK);
             Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.GET, apiParameters);
             return jsonMessage;
         }
         public Dictionary<string, object> CreateSceneTask(string scenePrimaryKey, Dictionary<string, object> taskdata, Dictionary<string, string> fields = null, bool usewebapi = true)
         {
             string apiParams = "";
-            string url = String.Format("scene/{0}/task/", scenePrimaryKey);
+            string url = String.Format("scene/{0}/task/?format=json", scenePrimaryKey);
             if (fields != null)
             {
                 apiParams = StringfyAPIParams(fields);
-                url += String.Format("fields={0}", apiParams);
+                url += String.Format("&fields={0}", apiParams);
             }
 
             Dictionary<string, object> response = GetJsonMessage(HttpMethod.POST, url, JSON.ToJSON(taskdata));
@@ -220,11 +208,10 @@ namespace Mujin
         {
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(path);
             httpWebRequest.Method = method.ToString();
-            httpWebRequest.Credentials = credentials;
+            httpWebRequest.UserAgent = String.Format("controllerclientcs/{0}", version);
             httpWebRequest.ContentType = "application/json; charset=UTF-8";
-            httpWebRequest.CookieContainer = this.cookies;
-            httpWebRequest.PreAuthenticate = true;
-            httpWebRequest.UserAgent = "controllerclientcs";
+            httpWebRequest.Accept = "application/json";
+            httpWebRequest.AllowAutoRedirect = false;
 
             this.AddAuthorizationHeader(httpWebRequest); // messes up logging
             this.AddCsrfTokenHeader(httpWebRequest);
@@ -236,7 +223,9 @@ namespace Mujin
         {
             string authInfo = username + ":" + password;
             authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
-            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+
+            httpWebRequest.PreAuthenticate = true;
+            httpWebRequest.Headers.Add("Authorization", "Basic " + authInfo);
         }
 
         private void AddCsrfTokenHeader(HttpWebRequest httpWebRequest)
@@ -244,6 +233,7 @@ namespace Mujin
             if (csrftoken != null)
             {
                 httpWebRequest.Headers.Add("X-CSRFToken", csrftoken);
+                httpWebRequest.Headers.Add("Cookie", String.Format("csrftoken={0}", csrftoken));
             }
         }
 
@@ -298,7 +288,6 @@ namespace Mujin
                 request.ContentType = contentType;
             }
             HttpWebResponse response = null;
-
             try
             {
                 response = (HttpWebResponse)request.GetResponse();

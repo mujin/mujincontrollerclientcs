@@ -1,0 +1,2705 @@
+{
+   "task" : "/api/v1/task/177/",
+   "name" : "0",
+   "output" : {
+      "objects" : [
+         {
+            "status" : "skipped",
+            "pk" : "217653__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "219934__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "214901__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "212497__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "011041__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "303030__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr_cdr_stylingfoam.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pab_test01_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pab_test01.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test_hiro_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test_hiro.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test0520_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0003.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0002.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0006.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0005.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0007.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0004.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0008.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0014.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0012.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0015.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0011.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0013.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0010.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001_0009.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pablo_test_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test_hiro_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test0520_999.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test0520_2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test0520.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kazuto.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "testset4.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "testset2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "testtest.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "testtest_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8435971_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2710659_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2861386_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8974304_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "189773__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "685996__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3515757_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "189844__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8146306_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "383995__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9755296_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3509482_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9836044_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8079689_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1985333_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7794778_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1293177_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1838857_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3624368_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1935574_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8082620_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "999101__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8135465_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1653039_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1638041_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "6227334_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8171167_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "630380__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4942302_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "886617__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9827377_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "195501__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "377620__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1653075_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "613431__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "999094__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9080666_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "838781__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8227530_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "585014__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "803294__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7898048_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9588572_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9611607_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8956333_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "5766961_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8998816_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1617032_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "138756__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "902757__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9060805_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8521111_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9431636_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "A294339_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8167727_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9819704_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "6198911_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3010056_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7883312_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9394050_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "416773__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7964152_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8475091_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8134851_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9646522_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1390949_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9316302_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1600886_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "987629__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1853479_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8308736_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "238706__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7884900_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9316438_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9434530_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9619169_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "972027__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1838679_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9611714_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "851872__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9302657_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "130561__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2716957_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9646792_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "389854__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "618895__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7964312_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "694108__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9822316_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "849622__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1431317_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9902758_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2959150_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1887379_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "6208965_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "337651__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1600901_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8974476_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9084629_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9468547_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9818055_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8227487_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8218085_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "531238__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "823706__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "458076__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8444872_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "677420__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "898823__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2002480_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1959816_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7887563_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "834076__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "828883__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "J473279_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "42284___0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8418184_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2052178_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9611296_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "662605__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9611652_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9819419_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1593807_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2497411_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "365119__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "484835__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1408417_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "971997__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2997606_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1469753_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "010400__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "238690__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "493146__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "069588__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1977082_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8130988_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "45560___0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "337464__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8481571_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "5017655_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "570399__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9435635_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "189719__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9378753_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "472208__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3262071_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "140306__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3483662_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8210748_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "645159__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8844533_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9611287_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "692749__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "480157__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8476384_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8515517_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3236213_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3610264_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9055224_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1749050_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2849425_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1712757_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8439658_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7794689_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "499266__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9821909_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "377361__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8525148_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9085125_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "809206__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "5283508_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1749069_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1586034_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8222794_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1617785_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "523361__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1932527_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "29200___0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9803983_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "585060__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9641482_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "5340490_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "127636__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4062905_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "933744__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "821917__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "667871__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "208636__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "655057__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2018621_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9787530_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8844542_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9818064_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "962460__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1853316_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1959843_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "143818__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1935716_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2466765_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7929458_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "5362890_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8212822_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1463446_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9085143_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8026729_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "433415__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1636047_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2910444_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9414706_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8476221_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "458085__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9636240_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "475406__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8522745_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "369191__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8435882_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9393802_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9775996_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4648195_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9637050_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1661999_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1977449_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9817174_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1295574_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1653825_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1601669_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8359996_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7799273_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "656706__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "J486912_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "5794803_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8497750_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8027762_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "266327__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "838791__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1990745_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9503145_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1990754_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8274558_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9765505_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7883377_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8364332_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "138710__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7874289_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "498429__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "634585__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "431134__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1981933_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3009841_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9434567_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "302807__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9817245_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "692758__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "537723__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4760112_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1749149_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4728385_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7889058_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "314782__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "6219065_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1613740_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9385785_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1953643_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1319273_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3485120_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9611527_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "595100__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1885605_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "5993567_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "851424__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9899189_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "5780719_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1593772_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3587578_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "630361__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9828338_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8257092_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2798863_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1953115_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "692730__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "622074__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8972471_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "480167__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7886486_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8925462_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "457195__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3219704_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1985398_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1985422_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1653066_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8857371_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7964232_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9787450_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1725755_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8576906_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "558751__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1792097_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9630999_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9306692_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8349532_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7883321_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "431125__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1570670_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "484577__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8027412_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "979814__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "891546__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "613736__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "939621__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8460357_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1295832_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7929387_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1971786_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "585041__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2242539_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3429425_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7982778_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "92126___0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "893101__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3430097_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "006336__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "5794812_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "209151__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "7929430_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9819698_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9478230_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "881058__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1864697_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1431308_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "610341__0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2020165_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9787306_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8200699_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1635470_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "1988676_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2019683_0001_0012.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2019683_0001_0011.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2019683_0001_0008.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2019683_0001_0007.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2019683_0001_0006.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2019683_0001_0005.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "2019683_0001_0002.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "testcalib_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_boxes_0025.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_cylinders_0021.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "rosetest2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Tsubakimoto_01.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "testcalib_0002.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "testcalib_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "rosentest.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbk_meiji_anpan.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "sdfafas_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tst0510.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "zzz_flap0010.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test11.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbk_caffe_latte.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbk_frosch.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "flap0010.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr07_set_bwf.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "aaaaaaa_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbk_wakodo_80.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbk_botanist.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbk_angfa_scalpd.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbk_cesar_70.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbk_lion_erisode.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbk_soba_tsuyu.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tyui.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_largesize_set.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "nishi.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr_cdr_hydrogenwater.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test0424_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "randombox.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "naruhito_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test0422_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "krn_fire_black.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "krn_mets_cola.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "krn_volvic_water.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "krn_mugicha_600.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr09_set_box_0003.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_boxes_0010.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_boxes_0005.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_boxes_0007.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_boxes_0006.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz762522.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "SCtest1_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3f_bluelet.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_test_axials_0008.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_test_axials_0007.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_test_axials_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_test_axials_0004.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_test_axials_0002.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_axials.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "test2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_axials_0004.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_axials_0003.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_cylinders_00191.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_cylinders_0019.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_cylinders_0018.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "choiceb_tmp_01.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "nntest2_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "mitsuitest_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_boxes_0004.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_boxes_0002.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_boxes_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_cylinders_0010.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_cylinders_0004.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_cylinder4_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_cylinder3.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr_irr_bathlook.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz100855.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz522658.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "rpt_nescafe.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "rpt_fusen.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "rpt_surgicaltape.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "rpt_twinings.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "rpt_gloves.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "rpt_straw.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "omron_0002.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "yiu.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "flapjia_0001.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_test_bag_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tes_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kitkat.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "expobisco.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cex_pretz.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cex_line.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "rm_copy_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "0shugotest001_0005.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Trusco_tcl16.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Trusco_tr3100b.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Trusco_dpmcm.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "askul_test_kai_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "askul_test_kai.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "calibtest.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "yyyy_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Trusco_blr020.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "newparttype.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "newparttype_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_largesize_03.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_thin_15.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103454767_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103285026_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "firegold.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz652526.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "mytest30.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec7.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "choco72.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "okamura_sheet.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_16.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103445611.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz480863.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tbkmt_lowLogo.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_79.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_107.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec1.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103702042_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "hzDemo_04.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "04.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cex_handker.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103284463_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz210216.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_single1.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "minipretz2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz003293.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_101.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "00002_0003.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "expo_aqua.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4992072066496_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103184435_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Sg_sanyo.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103439931_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec16.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz258458.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr03_ora2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "volvic.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103493957_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz091233.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_38.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103286771.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "facebox.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4650685_0018.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_06.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec12.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "multiobject_catfood.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec11.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "9646237_0010.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_20181023_set2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3f_shikkari.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "thinphoto7.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "00002_0002.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_thin_20.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec17.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_55.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr_cdr_nissincupnoodlemini.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "multiobject_laundryobjectiguess.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_89.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "picktest01.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pretz2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_thin_08.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pastanepal.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr_tsp_fixtp2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_11.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3f_purukogi.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_88.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Trusco_b338.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Expo_cloth2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "sandy2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ljiajia.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz289158.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "thinphoto14.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kai_test.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ensenso.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103283350.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "daifukutest.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "meau_rv_7frl.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "teat.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_single2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr_box_postit7001r.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec14.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_42.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ahmed_test.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "butai_0003.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec5.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103335929.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_86.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Trusco_46732.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "picotest.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_29.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz641804.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "levain.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "bousui.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_08.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr_bwf_clearspar.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_33.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cocacoa_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103440364.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "thinphoto2.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "mytest10.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cex_ecalc.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cex_maxwell.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_51.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_thin_12.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103489240_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz068622.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3f_arerubi.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103385221_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "aquafresh.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "dumpling.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103553873.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_98.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cec_shyoga.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103489592.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3f_jagabee.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec4.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3f_salanwrap.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103286771_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec13.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "gum.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Tsubakimoto_set_5.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "setobjects.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "njiajia.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "belctest.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_40.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "tyui_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "snack_0004.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_09.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cookdo_buta.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_100.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "thinphoto8.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "askul_test_1.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_thin_11.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_52.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kjiajia.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103288392.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103880085.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "choice_0011.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_thin_13.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cex_darlie.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "multiobject_xylident.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_71.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "00002.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "addntest_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_46.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Sg_sweetdays.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "okura_cable.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "3f_kabi.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "multiobject_yellowcube.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec6.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103489240.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103275058.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103880085_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "hzDemo_07.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_68.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103432307_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103095342.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "snack_0003.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "choice_0004.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103330986.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ejiajia.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103330986_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz4.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "09_sponge5.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103340572.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "choice_0003.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103255791_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr_cdr_hairspray.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz730168.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Mr_cdr_greentanuki.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cex2_toilet.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "hzDemo_01.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Trusco_tsg84.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "ijiajia.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8851019010144.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_76.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "05.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz322246.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "0mujin1.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "thinphoto10.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz109974_copy.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "8352019_partial_test.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103266667_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "kaz453081.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_41.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103282704.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "pppp_0000.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103277106.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_94.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_48.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "4953103622241_d.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "Elecom_thin_07.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "elec3.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "cex2_cloth_xl.mujin.dae"
+         },
+         {
+            "status" : "skipped",
+            "pk" : "first_test.mujin.dae"
+         }
+      ]
+   },
+   "errormessage" : "succeed",
+   "datecreated" : "2019-08-04T08:34:46.514315+00:00",
+   "unit" : "mm",
+   "scenepk" : "registrationsystemscene_4th.mujin.dae",
+   "run_time" : 0.5014109612,
+   "pk" : "143",
+   "envstate" : [
+      
+   ],
+   "task_time" : 0.0,
+   "id" : "143",
+   "sceneuri" : "mujin:/registrationsystemscene_4th.mujin.dae",
+   "resource_uri" : "/api/v1/binpickingresult/143/"
+}
