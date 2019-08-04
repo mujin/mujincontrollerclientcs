@@ -42,7 +42,6 @@ namespace Mujin
         public const string version = "0.1.0";
         private const string DEFAULT_URI = "http://controllerXX/";
         private const string DEFAULT_API_PATH = "api/v1/";
-        private const string DEFULAT_LOGIN_PATH = "login/";
 
 
         public ControllerClient(string username, string password, string baseUri = null)
@@ -58,14 +57,14 @@ namespace Mujin
             this.credentials = new CredentialCache();
             this.credentials.Add(new Uri(this.baseUri), "Basic", new NetworkCredential(this.username, this.password));
 
-            cookies = new CookieContainer();
-
-            this.Login();
+            this.csrftoken = "csrftoken";
+            this.cookies = new CookieContainer();
+            this.cookies.Add(new Uri(this.baseUri), new Cookie("csrftoken", this.csrftoken, "/"));
         }
 
         public string GetCurrentSceneURI()
         {
-            Dictionary<string, object> jsonMessage = this.Get("config/");
+            Dictionary<string, object> jsonMessage = this.GetJsonMessage(HttpMethod.GET, "/config/");
             return (string)jsonMessage["sceneuri"];
         }
 
@@ -82,11 +81,20 @@ namespace Mujin
             return this.GetJsonMessage(HttpMethod.GET, apiParameters);
         }
 
-
         public Dictionary<string, object> GetJob(string jobPK)
         {
             string apiParameters = string.Format("job/{0}/?limit=0", jobPK);
             return this.GetJsonMessage(HttpMethod.GET, apiParameters);
+        }
+
+        public void DeleteJob(string jobPK)
+        {
+            this.Delete(string.Format("job/{0}/", jobPK));
+        }
+
+        public void DeleteJobs()
+        {
+            this.Delete(string.Format("job/"));
         }
 
         public Dictionary<string, object> GetSceneTasks(string scenePrimaryKey)
@@ -130,33 +138,6 @@ namespace Mujin
             taskdata.Add("resource_type", "task");
             Dictionary<string, object> response = GetJsonMessage(HttpMethod.POST, "job/", JSON.ToJSON(taskdata));
             return response;
-        }
-
-        public Dictionary<string, object> Get(string path, Dictionary<string, object> headers=null)
-        {
-            HttpWebRequest request = CreateWebRequest(baseUri + path, HttpMethod.GET);
-            HttpWebResponse response = null;
-
-            try
-            {
-                response = (HttpWebResponse)request.GetResponse();
-            }
-            catch (WebException ex)
-            {
-                if (ex.Status.Equals(WebExceptionStatus.ProtocolError) && ex.ToString().Contains("500"))
-                {
-                    throw new ClientException("Mujin controller error. Possible error reason : (a) invalid scene primary key");
-                }
-            }
-
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            string responsestring = reader.ReadToEnd();
-            Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Parse(responsestring);
-
-            reader.Close();
-            response.Close();
-
-            return jsonMessage;
         }
 
         public Dictionary<string, object> GetJsonMessage(HttpMethod method, string apiParameters, string message = null)
@@ -293,6 +274,7 @@ namespace Mujin
 
             if (!expectedStatusCodes.Contains(response.StatusCode))
             {
+                response.Close();
                 string message = "Server returned error status (recognized as an error): " + response.StatusCode.ToString();
                 throw new ClientException(message);
             }
@@ -300,62 +282,17 @@ namespace Mujin
             return response;
         }
 
-        private void Login()
-        {
-            this.TryLogin();
-            this.SubmitLoginForm();
-        }
-
-        private void TryLogin()
-        {
-            HttpWebRequest webRequestAuth = CreateWebRequest(baseUri + DEFULAT_LOGIN_PATH, HttpMethod.GET);
-            webRequestAuth.AllowAutoRedirect = false;
-            HttpWebResponse responseAuth = this.GetResponse(webRequestAuth, new List<HttpStatusCode>() { HttpStatusCode.OK, HttpStatusCode.Redirect });
-
-            Cookie item = responseAuth.Cookies["csrftoken"];
-            if (item == null)
-            {
-                HttpWebRequest webRequestAuth2 = CreateWebRequest(baseApiUri, HttpMethod.GET);
-                HttpWebResponse responseAuth2 = this.GetResponse(webRequestAuth2, new List<HttpStatusCode>() { HttpStatusCode.OK });
-
-                item = responseAuth2.Cookies["csrftoken"];
-                responseAuth2.Close();
-            }
-
-            if (item != null)
-            {
-                this.csrftoken = item.Value;
-                //httpWebRequest.Referer = this.baseUri;
-            }
-
-            responseAuth.Close();
-        }
-
-        private void SubmitLoginForm()
-        {
-            HttpWebRequest webRequest = CreateWebRequest(baseUri + DEFULAT_LOGIN_PATH, HttpMethod.POST);
-            webRequest.ContentType = "application/x-www-form-urlencoded";
-            webRequest.Referer = this.baseUri + DEFULAT_LOGIN_PATH;
-            webRequest.AllowAutoRedirect = false;
-
-            if (this.csrftoken == null)
-            {
-                throw new ClientException("Need csrftoken for login");
-            }
-            
-            StreamWriter streamWrite = new StreamWriter(webRequest.GetRequestStream());
-            //streamWrite.Write(string.Format("username={0}&password={1}&this_is_the_login_form=1&next=%2F&csrfmiddlewaretoken={2}", username, password, this.csrftoken));
-            streamWrite.Write(string.Format("username={0}&password={1}&this_is_the_login_form=1&next=%2F", username, password));
-            streamWrite.Close();
-
-            HttpWebResponse responseApi = this.GetResponse(webRequest, new List<HttpStatusCode>() { HttpStatusCode.Found, HttpStatusCode.OK });
-
-            responseApi.Close();
-        }
-
         private Dictionary<string, object> GetMessageGet(string apiParameters, string contentType=null)
         {
-            HttpWebRequest request = CreateWebRequest(baseApiUri + apiParameters, HttpMethod.GET);
+            if (!apiParameters.StartsWith("/"))
+            {
+                apiParameters = baseApiUri + apiParameters;
+            }
+            else
+            {
+                apiParameters = baseUri + apiParameters.Substring(1);
+            }
+            HttpWebRequest request = CreateWebRequest(apiParameters, HttpMethod.GET);
             if (contentType != null)
             {
                 request.ContentType = contentType;
@@ -372,28 +309,59 @@ namespace Mujin
                 {
                     throw new ClientException("Mujin controller error. Possible error reason : (a) invalid scene primary key");
                 }
-
+                throw ex;
             }
-            
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            string responsestring = reader.ReadToEnd();
-            Dictionary<string, object> jsonMessage = (Dictionary<string, object>)JSON.Parse(responsestring);
 
-            reader.Close();
-            response.Close();
+            Dictionary<string, object> jsonMessage = null;
+            try
+            {
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                try
+                {
+                    string responsestring = reader.ReadToEnd();
+                    jsonMessage = (Dictionary<string, object>)JSON.Parse(responsestring);
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            finally
+            {
+                response.Close();
+            }
 
             return jsonMessage;
         }
 
         private HttpStatusCode Delete(string apiParameters)
         {
-            HttpWebRequest deleteRequest = CreateWebRequest(this.baseApiUri + apiParameters, HttpMethod.DELETE);
+            if (!apiParameters.StartsWith("/"))
+            {
+                apiParameters = baseApiUri + apiParameters;
+            }
+            else
+            {
+                apiParameters = baseUri + apiParameters.Substring(1);
+            }
+            HttpWebRequest deleteRequest = CreateWebRequest(apiParameters, HttpMethod.DELETE);
             HttpWebResponse response = (HttpWebResponse)deleteRequest.GetResponse();
-            return response.StatusCode;
+            HttpStatusCode statusCode = response.StatusCode;
+            response.Close();
+            return statusCode;
         }
+
         private Dictionary<string, object> GetMessagePostOrPut(string apiParameters, string message, HttpMethod method, string contentType=null)
         {
-            HttpWebRequest postWebRequest = CreateWebRequest(baseApiUri + apiParameters, method);
+            if (!apiParameters.StartsWith("/"))
+            {
+                apiParameters = baseApiUri + apiParameters;
+            }
+            else
+            {
+                apiParameters = baseUri + apiParameters.Substring(1);
+            }
+            HttpWebRequest postWebRequest = CreateWebRequest(apiParameters, method);
             if (contentType != null)
             {
                 postWebRequest.ContentType = contentType;
@@ -402,36 +370,48 @@ namespace Mujin
             writer.Write(message);
             writer.Close();
 
-            HttpWebResponse postWebResponse = (HttpWebResponse)postWebRequest.GetResponse();
-            StreamReader reader = new StreamReader(postWebResponse.GetResponseStream());
-            string responsestring = reader.ReadToEnd();
             Dictionary<string, object> messagedata;
-            if (contentType != null && contentType.IndexOf("xml") >= 0)
+            HttpWebResponse postWebResponse = (HttpWebResponse)postWebRequest.GetResponse();
+            try
             {
-                System.Xml.Linq.XDocument doc = System.Xml.Linq.XDocument.Parse(responsestring);
-                messagedata = new Dictionary<string, object>();
-
-                // TEMPORARY until can figure out how to make it consistent with JSON
-                foreach (System.Xml.Linq.XElement element in doc.Descendants().Where(p => p.HasElements == false))
+                StreamReader reader = new StreamReader(postWebResponse.GetResponseStream());
+                try
                 {
-                    int keyInt = 0;
-                    string keyName = element.Name.LocalName;
-
-                    while (messagedata.ContainsKey(keyName))
+                    string responsestring = reader.ReadToEnd();
+                    if (contentType != null && contentType.IndexOf("xml") >= 0)
                     {
-                        keyName = element.Name.LocalName + "_" + keyInt++;
+                        System.Xml.Linq.XDocument doc = System.Xml.Linq.XDocument.Parse(responsestring);
+                        messagedata = new Dictionary<string, object>();
+
+                        // TEMPORARY until can figure out how to make it consistent with JSON
+                        foreach (System.Xml.Linq.XElement element in doc.Descendants().Where(p => p.HasElements == false))
+                        {
+                            int keyInt = 0;
+                            string keyName = element.Name.LocalName;
+
+                            while (messagedata.ContainsKey(keyName))
+                            {
+                                keyName = element.Name.LocalName + "_" + keyInt++;
+                            }
+
+                            messagedata.Add(keyName, element.Value);
+                        }
+                    }
+                    else
+                    {
+                        messagedata = (Dictionary<string, object>)JSON.Parse(responsestring);
                     }
 
-                    messagedata.Add(keyName, element.Value);
+                }
+                finally
+                {
+                    reader.Close();
                 }
             }
-            else
+            finally
             {
-                messagedata = (Dictionary<string, object>)JSON.Parse(responsestring);
+                postWebResponse.Close();
             }
-
-            reader.Close();
-            postWebResponse.Close();
 
             return messagedata;
         }
