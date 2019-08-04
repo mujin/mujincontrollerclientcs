@@ -81,7 +81,6 @@ namespace Mujin
             return this.GetJsonMessage(HttpMethod.GET, apiParameters);
         }
 
-
         public Dictionary<string, object> GetJob(string jobPK)
         {
             string apiParameters = string.Format("job/{0}/?limit=0", jobPK);
@@ -90,7 +89,12 @@ namespace Mujin
 
         public void DeleteJob(string jobPK)
         {
-            this.Delete(string.Format("job/{0}/?limit=0", jobPK));
+            this.Delete(string.Format("job/{0}/", jobPK));
+        }
+
+        public void DeleteJobs()
+        {
+            this.Delete(string.Format("job/"));
         }
 
         public Dictionary<string, object> GetSceneTasks(string scenePrimaryKey)

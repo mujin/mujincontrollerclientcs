@@ -209,21 +209,10 @@ namespace RegistrationBackup
                 richTextBox1.Text = job["status_text"].ToString();
 
                 double progressRaw = double.Parse(job["progress"].ToString());
-                if (progressRaw < 0)
-                {
-                    progress = 100;
-                    progressBar1.Invoke(new Action(() => {
-                        progressBar1.Value = progress;
-                    }));
-                    break;
-                }
-                else
-                {
-                    progress = Math.Min(100, Math.Max(progress, (int)Math.Round(progressRaw * 100)));
-                    progressBar1.Invoke(new Action(() => {
-                        progressBar1.Value = progress;
-                    }));
-                }
+                progress = Math.Min(100, Math.Max(progress, (int)Math.Round(progressRaw * 100)));
+                progressBar1.Invoke(new Action(() => {
+                    progressBar1.Value = progress;
+                }));
             }
 
             int objectCount = 0;
