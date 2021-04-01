@@ -265,6 +265,8 @@ namespace registrationbackup
                     case "preempted":
                         throw new Exception(String.Format("Job has stopped unexpectedly: {0}", status));
                 }
+
+                Thread.Sleep(200);
             }
         }
 
